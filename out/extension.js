@@ -293,6 +293,8 @@ function activate(context) {
                         ? "google chrome"
                         : "google-chrome",
             ],
+        }).catch((err) => {
+            open(uri);
         });
     });
     let closePort = vscode.commands.registerCommand("extension.closePort", () => __awaiter(this, void 0, void 0, function* () {

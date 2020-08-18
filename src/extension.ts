@@ -56,6 +56,7 @@ const empty = function (code: string) {
   });
   return stream;
 };
+
 interface OutputDirectoryPath {
   ".js": string;
   ".scss": string;
@@ -355,6 +356,8 @@ export function activate(context: vscode.ExtensionContext) {
               ? "google chrome"
               : "google-chrome",
         ],
+      }).catch((err: any) => {
+        open(uri);
       });
     }
   );
