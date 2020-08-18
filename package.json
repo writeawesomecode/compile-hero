@@ -8,9 +8,9 @@
     "url": "https://github.com/Wscats"
   },
   "publisher": "Wscats",
-  "version": "2.3.1",
+  "version": "2.3.3",
   "preview": true,
-  "icon": "logos/hero3.png",
+  "icon": "logos/hero2.png",
   "homepage": "https://github.com/Wscats/compile-hero",
   "engines": {
     "vscode": "^1.39.0"
@@ -239,6 +239,7 @@
     "gulp-uglify": "^3.0.2",
     "open": "^6.4.0",
     "pug": "^2.0.4",
+    "sass": "^1.26.10",
     "typescript": "^3.3.1"
   },
   "devDependencies": {

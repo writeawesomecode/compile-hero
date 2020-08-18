@@ -14,7 +14,6 @@ const vscode = require("vscode");
 const fs = require("fs");
 const p = require("path");
 const child_process_1 = require("child_process");
-const { compileSass, sass } = require("./sass/index");
 const { src, dest } = require("gulp");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
@@ -27,6 +26,7 @@ const jade = require("gulp-jade");
 const pug = require("pug");
 const open = require("open");
 const through = require("through2");
+const sass = require("sass");
 const successMessage = "✔ Compilation Successed!";
 const errorMessage = "❌ Compilation Failed!";
 const readFileContext = (path) => {
@@ -99,40 +99,39 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
     if (!compileStatus[fileSuffix])
         return;
     let outputPath = p.resolve(path, "../", outputDirectoryPath[fileSuffix]);
-    // console.log(fileSuffix);
     switch (fileSuffix) {
         case ".scss":
         case ".sass":
-            let { text, status } = yield compileSass(fileContext, {
-                style: sass.style.expanded || sass.style.compressed,
-                indentedSyntax: fileSuffix === ".sass" ? true : false,
-            });
-            if (status !== 0) {
-                vscode.window.setStatusBarMessage(errorMessage);
-                return;
-            }
-            src(path)
-                .pipe(empty(text))
-                .pipe(rename({
-                extname: ".css",
-            }))
-                .pipe(dest(outputPath))
-                .pipe(dest(outputPath));
-            if (compileOptions.generateMinifiedCss) {
+            try {
+                const { css } = sass.renderSync({ file: path });
+                const text = css.toString();
                 src(path)
                     .pipe(empty(text))
                     .pipe(rename({
                     extname: ".css",
                 }))
                     .pipe(dest(outputPath))
-                    .pipe(cssmin({ compatibility: "ie7" }))
-                    .pipe(rename({
-                    extname: ".css",
-                    suffix: ".min",
-                }))
                     .pipe(dest(outputPath));
+                if (compileOptions.generateMinifiedCss) {
+                    src(path)
+                        .pipe(empty(text))
+                        .pipe(rename({
+                        extname: ".css",
+                    }))
+                        .pipe(dest(outputPath))
+                        .pipe(cssmin({ compatibility: "ie7" }))
+                        .pipe(rename({
+                        extname: ".css",
+                        suffix: ".min",
+                    }))
+                        .pipe(dest(outputPath));
+                }
+                vscode.window.setStatusBarMessage(successMessage);
             }
-            vscode.window.setStatusBarMessage(successMessage);
+            catch (error) {
+                vscode.window.showErrorMessage(error.message);
+                vscode.window.setStatusBarMessage(errorMessage);
+            }
             break;
         case ".js":
             if (/.dev.js|.prod.js$/g.test(path)) {
@@ -234,7 +233,6 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                 .pipe(jade({
                 pretty: true,
             }).on("error", (error) => {
-                console.log(error);
                 vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }))
@@ -328,7 +326,6 @@ function activate(context) {
     vscode.workspace.onDidSaveTextDocument((document) => {
         let config = vscode.workspace.getConfiguration("compile-hero");
         let isDisableOnDidSaveTextDocument = config.get("disable-compile-files-on-did-save-code") || "";
-        console.log(isDisableOnDidSaveTextDocument);
         if (isDisableOnDidSaveTextDocument)
             return;
         const { fileName } = document;

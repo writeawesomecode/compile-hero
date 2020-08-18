@@ -24,6 +24,7 @@
 - 2020-05-23 Fix compilation failure due to relative path of pug - [Bug: Pug include tag not working](https://github.com/Wscats/compile-hero/issues/19).
 - 2020-06-21 Add javascript, css, html minified options settings - [Feature: Minified options settings](https://github.com/Wscats/compile-hero/issues/13).
 - 2020-06-27 Support to compile all files in the entire folder
+- 2020-08-18 Fix compilation failure due to relative path of sass - [Bug: Do Sass partials (_variables.scss) work](https://github.com/Wscats/compile-hero/issues/38).
 
 # Unreleased
 
