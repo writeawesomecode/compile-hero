@@ -25,6 +25,7 @@
 - 2020-06-21 Add javascript, css, html minified options settings - [Feature: Minified options settings](https://github.com/Wscats/compile-hero/issues/13).
 - 2020-06-27 Support to compile all files in the entire folder
 - 2020-08-18 Fix compilation failure due to relative path of sass - [Bug: Do Sass partials (_variables.scss) work](https://github.com/Wscats/compile-hero/issues/38).
+- 2020-08-20 After the extension is successfully installed, it should work normally by default - [Fix: Press Ctrl+s and no css file is generated](https://github.com/Wscats/compile-hero/issues/36).
 
 # Unreleased
 

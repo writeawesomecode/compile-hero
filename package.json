@@ -83,7 +83,7 @@
       "properties": {
         "compile-hero.disable-compile-files-on-did-save-code": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Disable compile files on did save code."
         },
         "compile-hero.javascript-output-directory": {
