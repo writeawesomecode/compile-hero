@@ -15,6 +15,10 @@
   "engines": {
     "vscode": "^1.39.0"
   },
+  "galleryBanner": {
+    "color": "#58bc58",
+    "theme": "dark"
+  },
   "bugs": {
     "url": "https://github.com/Wscats/compile-hero/issues/new"
   },
