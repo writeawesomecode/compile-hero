@@ -2,7 +2,7 @@
 <a href="https://marketplace.visualstudio.com/items?itemName=Wscats.eno"><img src="https://img.shields.io/badge/Macketplace-v2.00-brightgreen" alt="Macketplace" /></a>
 <a href="https://github.com/Wscats/compile-hero"><img src="https://img.shields.io/badge/Github Page-Wscats-yellow" alt="Github Page" /></a>
 <a href="https://github.com/Wscats"><img src="https://img.shields.io/badge/Author-Eno Yao-blueviolet" alt="Eno Yao" /></a>
-<a href="https://github.com/Wscats"><img src="https://api.netlify.com/api/v1/badges/b652768b-1673-42cd-98dd-3fd807b2ebca/deploy-status" alt="Status" /></a>
+<!-- <a href="https://github.com/Wscats"><img src="https://api.netlify.com/api/v1/badges/b652768b-1673-42cd-98dd-3fd807b2ebca/deploy-status" alt="Status" /></a> -->
 
 <!-- [English](https://github.com/Wscats/compile-hero/blob/master/README.md) | [中文](https://github.com/Wscats/compile-hero/blob/master/README.CN.md) -->
 
@@ -12,13 +12,10 @@ Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visu
 
 Compile on save `(ctrl+s)` or select `Compile File(s)` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
 
-<img src="https://wscats.github.io/compile-hero/screenshots/1.gif" />
-
-<br/>
-
-<img src="https://wscats.github.io/compile-hero/screenshots/3.gif" />
-
-<br/>
+<!-- <img src="https://wscats.github.io/compile-hero/screenshots/1.gif" /> -->
+![Demo](screenshots/1.gif)
+<!-- <img src="https://wscats.github.io/compile-hero/screenshots/3.gif" /> -->
+![Demo](screenshots/3.gif)
 
 - Compile `less, sass, scss, typescript, jade, pug and jsx` on save.
 - Support autoprefixer for `less, scss, scss`.
@@ -62,8 +59,8 @@ Click to open the extension management interface `Configure Extension Settings`.
 | generate-minified-css        | false         |
 | generate-minified-javascript | false         |
 
-<br>
-<img src="https://wscats.github.io/compile-hero/screenshots/5.gif" />
+<!-- <img src="https://wscats.github.io/compile-hero/screenshots/5.gif" /> -->
+![Demo](screenshots/5.gif)
 
 Advanced Extension Settings:
 
@@ -90,23 +87,26 @@ Here Example settings.json file:
 
 Right click the `html` file in the directory menu, and the `open in browser` option will appear. You can preview the page in the browser.
 
-<img src="https://wscats.github.io/compile-hero/screenshots/2.gif" />
+<!-- <img src="https://wscats.github.io/compile-hero/screenshots/2.gif" /> -->
+![Demo](screenshots/2.gif)
 
 # Compile File Menu Item
 
 Sometimes you may not need to automatically compile the file every time you save the file, at this time you can disable the automatic compilation. And use the `Compile File(s)` menu item to replace.
 
-<img src="https://wscats.github.io/compile-hero/screenshots/6.gif" />
+<!-- <img src="https://wscats.github.io/compile-hero/screenshots/6.gif" /> -->
+![Demo](screenshots/6.gif)
 
 # Close Port Command(MAC)
 
 At some point, you may be using ports for some services. You can use the `Close Port` command to close, but now only supported on mac.
 
-<img src="https://wscats.github.io/compile-hero/screenshots/4.gif" />
+<!-- <img src="https://wscats.github.io/compile-hero/screenshots/4.gif" /> -->
+![Demo](screenshots/4.gif)
 
 # Thanks
 
-| [<img src="https://avatars1.githubusercontent.com/u/17243165?s=460&v=4" width="60px;"/><br /><sub>Eno Yao</sub>](https://github.com/Wscats) | [<img src="https://avatars2.githubusercontent.com/u/5805270?s=460&v=4" width="60px;"/><br /><sub>Aaron Xie</sub>](https://github.com/aaron-xie) | [<img src="https://avatars3.githubusercontent.com/u/12515367?s=460&v=4" width="60px;"/><br /><sub>DK Lan</sub>](https://github.com/dk-lan) | [<img src="https://avatars1.githubusercontent.com/u/30917929?s=460&v=4" width="60px;"/><br /><sub>Yong</sub>](https://github.com/flowerField) | [<img src="https://avatars3.githubusercontent.com/u/33544236?s=460&v=4" width="60px;"/><br /><sub>Li Ting</sub>](https://github.com/Liting1) | <img src="https://wscats.github.io/omi-snippets/images/xin.jpg" width="60px;"/><br /><sub>Xin</sub> | [<img src="https://wscats.github.io/omi-snippets/images/lemon.jpg" width="60px;"/><br /><sub>Lemon</sub>](https://github.com/lemonyyye) | [<img src="https://wscats.github.io/omi-snippets/images/jing.jpg" width="60px;"/><br /><sub>Jing</sub>](https://github.com/vickySC) | [<img src="https://wscats.github.io/omi-snippets/images/lin.jpg" width="60px;"/><br /><sub>Lin</sub>](https://github.com/shirley3790) | [<img src="https://avatars2.githubusercontent.com/u/23230108?s=460&v=4" width="60px;"/><br /><sub>Tian Fly</sub>](https://github.com/tiantengfly) |
+| [<img src="https://avatars1.githubusercontent.com/u/17243165?s=460&v=4" width="60px;"/><br /><sub>Eno Yao</sub>](https://github.com/Wscats) | [<img src="https://avatars2.githubusercontent.com/u/5805270?s=460&v=4" width="60px;"/><br /><sub>Aaron Xie</sub>](https://github.com/aaron-xie) | [<img src="https://avatars3.githubusercontent.com/u/12515367?s=460&v=4" width="60px;"/><br /><sub>DK Lan</sub>](https://github.com/dk-lan) | [<img src="https://avatars1.githubusercontent.com/u/30917929?s=460&v=4" width="60px;"/><br /><sub>Yong</sub>](https://github.com/flowerField) | [<img src="https://avatars3.githubusercontent.com/u/33544236?s=460&v=4" width="60px;"/><br /><sub>Li Ting</sub>](https://github.com/Liting1) | <img src="https://avatars2.githubusercontent.com/u/50255537?s=400&u=cfd51a5f46862d14e92e032a5b7ec073b67a904b&v=4" width="60px;"/><br /><sub>Xin</sub> | [<img src="https://avatars0.githubusercontent.com/u/39754159?s=400&v=4" width="60px;"/><br /><sub>Lemon</sub>](https://github.com/lemonyyye) | [<img src="https://avatars3.githubusercontent.com/u/31915459?s=400&u=11ea9bc9baa62784208a29dddcd0a77789e9620f&v=4" width="60px;"/><br /><sub>Jing</sub>](https://github.com/vickySC) | [<img src="https://avatars2.githubusercontent.com/u/24653988?s=400&u=76227871dea8d4b57162093fde63b7d52910145d&v=4" width="60px;"/><br /><sub>Lin</sub>](https://github.com/shirley3790) | [<img src="https://avatars2.githubusercontent.com/u/23230108?s=460&v=4" width="60px;"/><br /><sub>Tian Fly</sub>](https://github.com/tiantengfly) |
 | - | - | - | - | - | - | - | - | - | - |
 
 
