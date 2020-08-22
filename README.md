@@ -45,6 +45,8 @@ Click to open the extension management interface `Configure Extension Settings`.
 | -------------------------------------------------------------------------- | ------------- |
 | disable-compile-files-on-did-save-code                                     | false         |
 
+![Demo](screenshots/7.gif)
+
 | Output Path Configuration    | Default Value | Compile Switch Status     | Default Value |
 | ---------------------------- | ------------- | ------------------------- | ------------- |
 | javascript-output-directory  | ./dist        | javascript-output-toggle  | true          |

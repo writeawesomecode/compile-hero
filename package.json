@@ -1,6 +1,6 @@
 {
-  "name": "qf",
-  "displayName": "Sass/Less/Scss/Typescript/Javascript/Jade/Pug Compile Hero",
+  "name": "eno",
+  "displayName": "Sass/Less/Scss/Typescript/Javascript/Jade/Pug Compile Hero Pro",
   "description": "🚀Easy to compile ts, tsx, scss, less, jade, pug and es6+ on save without using a build task.",
   "author": {
     "name": "Eno Yao",
@@ -8,7 +8,7 @@
     "url": "https://github.com/Wscats"
   },
   "publisher": "Wscats",
-  "version": "6.8.68",
+  "version": "2.3.8",
   "preview": true,
   "icon": "logos/hero2.png",
   "homepage": "https://github.com/Wscats/compile-hero",
@@ -62,23 +62,25 @@
   ],
   "activationEvents": [
     "*",
-    "onCommand:extension.openInBrowser",
-    "onCommand:extension.closePort",
-    "onCommand:extension.compileFile"
+    "onCommand:compile-hero.openInBrowser",
+    "onCommand:compile-hero.closePort",
+    "onCommand:compile-hero.compileFile",
+    "onCommand:compile-hero.compileHeroOn",
+    "onCommand:compile-hero.compileHeroOff"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "extension.openInBrowser",
+        "command": "compile-hero.openInBrowser",
         "title": "Open In Browser"
       },
       {
-        "command": "extension.closePort",
+        "command": "compile-hero.closePort",
         "title": "Close Port"
       },
       {
-        "command": "extension.compileFile",
+        "command": "compile-hero.compileFile",
         "title": "Compile Files"
       }
     ],
@@ -191,31 +193,31 @@
       "explorer/context": [
         {
           "when": "resourceLangId == html",
-          "command": "extension.openInBrowser",
+          "command": "compile-hero.openInBrowser",
           "group": "open-in-browser"
         },
         {
-          "command": "extension.compileFile"
+          "command": "compile-hero.compileFile"
         }
       ],
       "editor/context": [
         {
           "when": "resourceLangId == html",
-          "command": "extension.openInBrowser",
+          "command": "compile-hero.openInBrowser",
           "group": "open-in-browser"
         },
         {
-          "command": "extension.compileFile"
+          "command": "compile-hero.compileFile"
         }
       ],
       "editor/title/context": [
         {
           "when": "resourceLangId == html",
-          "command": "extension.openInBrowser",
+          "command": "compile-hero.openInBrowser",
           "group": "open-in-browser"
         },
         {
-          "command": "extension.compileFile"
+          "command": "compile-hero.compileFile"
         }
       ]
     }

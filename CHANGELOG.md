@@ -1,5 +1,7 @@
 # Change Log
 
+- 2017-05-12 Establish a private code repository and implement a simple compilation extension.
+- 2018-10-24 Start writing documents and tutorials, and adjust the code structure.
 - 2019-11-03 Automatically evaluate documents and generate download links.
 - 2019-11-04 Support compiling `scss` files.
 - 2019-11-05 Support compiling `jade`, `typescript` and `less` files.

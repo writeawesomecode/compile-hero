@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as p from "path";
 import { exec } from "child_process";
+import { StatusBarUi } from './statusBarUi';
 const { src, dest } = require("gulp");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
@@ -365,9 +366,9 @@ const readFileName = async (path: string, fileContext: string) => {
   }
 };
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "qf" is now active!');
+  console.log('Congratulations, compile hero is now active!');
   let openInBrowser = vscode.commands.registerCommand(
-    "extension.openInBrowser",
+    "compile-hero.openInBrowser",
     (path) => {
       let uri = path.fsPath;
       let platform = process.platform;
@@ -385,7 +386,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   let closePort = vscode.commands.registerCommand(
-    "extension.closePort",
+    "compile-hero.closePort",
     async () => {
       let inputPort = await vscode.window.showInputBox({
         placeHolder: "Enter the port you need to close?",
@@ -400,7 +401,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   let compileFile = vscode.commands.registerCommand(
-    "extension.compileFile",
+    "compile-hero.compileFile",
     (path) => {
       let uri = path.fsPath;
       try {
@@ -415,9 +416,31 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  let compileHeroOn = vscode.commands.registerCommand(
+    "compile-hero.compileHeroOn",
+    () => {
+      let config = vscode.workspace.getConfiguration("compile-hero");
+      config.update("disable-compile-files-on-did-save-code", true);
+      StatusBarUi.notWatching();
+    }
+  );
+
+  let compileHeroOff = vscode.commands.registerCommand(
+    "compile-hero.compileHeroOff",
+    () => {
+      let config = vscode.workspace.getConfiguration("compile-hero");
+      config.update("disable-compile-files-on-did-save-code", false);
+      console.log(config);
+      StatusBarUi.watching();
+    }
+  );
+
   context.subscriptions.push(openInBrowser);
   context.subscriptions.push(closePort);
   context.subscriptions.push(compileFile);
+  context.subscriptions.push(compileHeroOn);
+  context.subscriptions.push(compileHeroOff);
+
   vscode.workspace.onDidSaveTextDocument((document) => {
     let config = vscode.workspace.getConfiguration("compile-hero");
     let isDisableOnDidSaveTextDocument =
@@ -427,5 +450,9 @@ export function activate(context: vscode.ExtensionContext) {
     const fileContext: string = readFileContext(fileName);
     readFileName(fileName, fileContext);
   });
+
+  StatusBarUi.init(vscode.workspace.getConfiguration("compile-hero").get<string>("disable-compile-files-on-did-save-code") || "");
 }
-export function deactivate() { }
+export function deactivate() {
+  StatusBarUi.dispose();
+}
