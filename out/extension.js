@@ -68,6 +68,23 @@ const empty = function (code) {
     });
     return stream;
 };
+const complieFile = (uri) => {
+    const fileContext = readFileContext(uri);
+    readFileName(uri, fileContext);
+};
+const complieDir = (uri) => {
+    const files = fs.readdirSync(uri);
+    files.forEach((filename) => {
+        const fileUrl = p.join(uri, filename);
+        const fileStats = fs.statSync(fileUrl);
+        if (fileStats.isDirectory()) {
+            complieDir(fileUrl);
+        }
+        else {
+            complieFile(fileUrl);
+        }
+    });
+};
 const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, function* () {
     let fileSuffix = fileType(path);
     let config = vscode.workspace.getConfiguration("compile-hero");
@@ -310,16 +327,16 @@ function activate(context) {
     }));
     let compileFile = vscode.commands.registerCommand("extension.compileFile", (path) => {
         let uri = path.fsPath;
-        if (fs.readdirSync(uri).length > 0) {
-            const files = fs.readdirSync(uri);
-            files.forEach((filename) => {
-                const fileContext = readFileContext(uri + "/" + filename);
-                readFileName(uri + "/" + filename, fileContext);
-            });
+        try {
+            if (fs.readdirSync(uri).length > 0) {
+                complieDir(uri);
+            }
+            else {
+                complieFile(uri);
+            }
         }
-        else {
-            const fileContext = readFileContext(uri);
-            readFileName(uri, fileContext);
+        catch (error) {
+            complieFile(uri);
         }
     });
     context.subscriptions.push(openInBrowser);

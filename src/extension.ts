@@ -17,15 +17,18 @@ const through = require("through2");
 const sass = require("sass");
 const successMessage = "✔ Compilation Successed!";
 const errorMessage = "❌ Compilation Failed!";
+
 const readFileContext = (path: string): string => {
   return fs.readFileSync(path).toString();
 };
+
 const fileType = (filename: string) => {
   const index1 = filename.lastIndexOf(".");
   const index2 = filename.length;
   const type = filename.substring(index1, index2);
   return type as FileSuffix;
 };
+
 const command = (cmd: string) => {
   return new Promise<string>((resolve, reject) => {
     exec(cmd, (err, stdout, stderr) => {
@@ -33,6 +36,7 @@ const command = (cmd: string) => {
     });
   });
 };
+
 const transformPort = (data: string): string => {
   let port: string = "";
   data.split(/[\n|\r]/).forEach((item) => {
@@ -45,6 +49,7 @@ const transformPort = (data: string): string => {
   });
   return port;
 };
+
 const empty = function (code: string) {
   let stream = through.obj((file: any, encoding: any, callback: Function) => {
     if (!file.isBuffer()) {
@@ -55,6 +60,24 @@ const empty = function (code: string) {
     callback();
   });
   return stream;
+};
+
+const complieFile = (uri: string) => {
+  const fileContext: string = readFileContext(uri);
+  readFileName(uri, fileContext);
+};
+
+const complieDir = (uri: string) => {
+  const files = fs.readdirSync(uri);
+  files.forEach((filename) => {
+    const fileUrl = p.join(uri, filename);
+    const fileStats = fs.statSync(fileUrl);
+    if (fileStats.isDirectory()) {
+      complieDir(fileUrl);
+    } else {
+      complieFile(fileUrl);
+    }
+  });
 };
 
 interface OutputDirectoryPath {
@@ -380,15 +403,14 @@ export function activate(context: vscode.ExtensionContext) {
     "extension.compileFile",
     (path) => {
       let uri = path.fsPath;
-      if (fs.readdirSync(uri).length > 0) {
-        const files = fs.readdirSync(uri);
-        files.forEach((filename) => {
-          const fileContext: string = readFileContext(uri + "/" + filename);
-          readFileName(uri + "/" + filename, fileContext);
-        });
-      } else {
-        const fileContext: string = readFileContext(uri);
-        readFileName(uri, fileContext);
+      try {
+        if (fs.readdirSync(uri).length > 0) {
+          complieDir(uri);
+        } else {
+          complieFile(uri);
+        }
+      } catch (error) {
+        complieFile(uri);
       }
     }
   );
