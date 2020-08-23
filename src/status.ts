@@ -1,40 +1,43 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.StatusBarUi = void 0;
-const vscode = require("vscode");
-class StatusBarUi {
-    static get statusBarItem() {
+import * as vscode from 'vscode';
+
+export class StatusBarUi {
+    private static _statusBarItem: vscode.StatusBarItem;
+    private static get statusBarItem() {
         if (!StatusBarUi._statusBarItem) {
             StatusBarUi._statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 200);
             this.statusBarItem.show();
         }
         return StatusBarUi._statusBarItem;
     }
-    static init() {
+
+    static init(disableCompileFilesOnDidSaveCode: string) {
         StatusBarUi.working("Starting...");
         setTimeout(function () {
-            StatusBarUi.notWatching();
+            disableCompileFilesOnDidSaveCode ? StatusBarUi.notWatching() : StatusBarUi.watching();
         }, 1000);
     }
+
     static watching() {
-        StatusBarUi.statusBarItem.text = `$(telescope) Watching...`;
+        StatusBarUi.statusBarItem.text = `$(eye) Compile Hero: On`;
         StatusBarUi.statusBarItem.color = 'inherit';
-        StatusBarUi.statusBarItem.command = 'liveSass.command.donotWatchMySass';
-        StatusBarUi.statusBarItem.tooltip = 'Stop live compilation of SASS or SCSS to CSS';
+        StatusBarUi.statusBarItem.command = 'compile-hero.compileHeroOn';
+        StatusBarUi.statusBarItem.tooltip = 'Stop live compilation';
     }
+
     static notWatching() {
-        StatusBarUi.statusBarItem.text = `$(eye) Watch Sass`;
+        StatusBarUi.statusBarItem.text = `$(eye-closed) Compile Hero: Off`;
         StatusBarUi.statusBarItem.color = 'inherit';
-        StatusBarUi.statusBarItem.command = 'liveSass.command.watchMySass';
-        StatusBarUi.statusBarItem.tooltip = 'live compilation of SASS or SCSS to CSS';
+        StatusBarUi.statusBarItem.command = 'compile-hero.compileHeroOff';
+        StatusBarUi.statusBarItem.tooltip = 'live compilation';
     }
-    static working(workingMsg = "Working on it...") {
+
+    static working(workingMsg: string = "Working on it...") {
         StatusBarUi.statusBarItem.text = `$(pulse) ${workingMsg}`;
         StatusBarUi.statusBarItem.tooltip = 'In case if it takes long time, Show output window and report.';
         StatusBarUi.statusBarItem.command = undefined;
     }
-    // Quick status bar messages after compile success or error
-    static compilationSuccess(isWatching) {
+
+    static compilationSuccess(isWatching: boolean) {
         StatusBarUi.statusBarItem.text = `$(check) Success`;
         StatusBarUi.statusBarItem.color = '#33ff00';
         StatusBarUi.statusBarItem.command = undefined;
@@ -48,7 +51,7 @@ class StatusBarUi {
             StatusBarUi.notWatching();
         }
     }
-    static compilationError(isWatching) {
+    static compilationError(isWatching: boolean) {
         StatusBarUi.statusBarItem.text = `$(x) Error`;
         StatusBarUi.statusBarItem.color = '#ff0033';
         StatusBarUi.statusBarItem.command = undefined;
@@ -62,9 +65,8 @@ class StatusBarUi {
             StatusBarUi.notWatching();
         }
     }
+
     static dispose() {
         StatusBarUi.statusBarItem.dispose();
     }
 }
-exports.StatusBarUi = StatusBarUi;
-//# sourceMappingURL=statusBar.js.map

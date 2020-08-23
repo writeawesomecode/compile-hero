@@ -14,7 +14,7 @@ const vscode = require("vscode");
 const fs = require("fs");
 const p = require("path");
 const child_process_1 = require("child_process");
-const statusBarUi_1 = require("./statusBarUi");
+const status_1 = require("./status");
 const { src, dest } = require("gulp");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
@@ -28,6 +28,7 @@ const pug = require("pug");
 const open = require("open");
 const through = require("through2");
 const sass = require("sass");
+const { formatters, formatActiveDocument } = require("./beautify");
 const successMessage = "✔ Compilation Successed!";
 const errorMessage = "❌ Compilation Failed!";
 const readFileContext = (path) => {
@@ -343,19 +344,27 @@ function activate(context) {
     let compileHeroOn = vscode.commands.registerCommand("compile-hero.compileHeroOn", () => {
         let config = vscode.workspace.getConfiguration("compile-hero");
         config.update("disable-compile-files-on-did-save-code", true);
-        statusBarUi_1.StatusBarUi.notWatching();
+        status_1.StatusBarUi.notWatching();
     });
     let compileHeroOff = vscode.commands.registerCommand("compile-hero.compileHeroOff", () => {
         let config = vscode.workspace.getConfiguration("compile-hero");
         config.update("disable-compile-files-on-did-save-code", false);
-        console.log(config);
-        statusBarUi_1.StatusBarUi.watching();
+        status_1.StatusBarUi.watching();
     });
+    formatters.configure();
+    let beautify = vscode.commands.registerCommand('compile-hero.beautify', formatActiveDocument.bind(0, true));
+    let beautifyFile = vscode.commands.registerCommand('compile-hero.beautifyFile', formatActiveDocument.bind(0, false));
+    let formattersConfigure = vscode.workspace.onDidChangeConfiguration(formatters.configure.bind(formatters));
+    let formattersOnFileOpen = vscode.workspace.onDidOpenTextDocument(formatters.onFileOpen.bind(formatters));
     context.subscriptions.push(openInBrowser);
     context.subscriptions.push(closePort);
     context.subscriptions.push(compileFile);
     context.subscriptions.push(compileHeroOn);
     context.subscriptions.push(compileHeroOff);
+    context.subscriptions.push(beautify);
+    context.subscriptions.push(beautifyFile);
+    context.subscriptions.push(formattersConfigure);
+    context.subscriptions.push(formattersOnFileOpen);
     vscode.workspace.onDidSaveTextDocument((document) => {
         let config = vscode.workspace.getConfiguration("compile-hero");
         let isDisableOnDidSaveTextDocument = config.get("disable-compile-files-on-did-save-code") || "";
@@ -365,11 +374,11 @@ function activate(context) {
         const fileContext = readFileContext(fileName);
         readFileName(fileName, fileContext);
     });
-    statusBarUi_1.StatusBarUi.init(vscode.workspace.getConfiguration("compile-hero").get("disable-compile-files-on-did-save-code") || "");
+    status_1.StatusBarUi.init(vscode.workspace.getConfiguration("compile-hero").get("disable-compile-files-on-did-save-code") || "");
 }
 exports.activate = activate;
 function deactivate() {
-    statusBarUi_1.StatusBarUi.dispose();
+    status_1.StatusBarUi.dispose();
 }
 exports.deactivate = deactivate;
 //# sourceMappingURL=extension.js.map

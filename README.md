@@ -12,15 +12,22 @@ Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visu
 
 Compile on save `(ctrl+s)` or select `Compile File(s)` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
 
+Beautify on save `(alt+shift+f)` or select `Format Document` on right-click menu item for `javascript, json, css, sass and html`.
+
 <!-- <img src="https://wscats.github.io/compile-hero/screenshots/1.gif" /> -->
 ![Demo](screenshots/1.gif)
 <!-- <img src="https://wscats.github.io/compile-hero/screenshots/3.gif" /> -->
 ![Demo](screenshots/3.gif)
 
+![Demo](screenshots/8.gif)
+
+
+
 - Compile `less, sass, scss, typescript, jade, pug and jsx` on save.
 - Support autoprefixer for `less, scss, scss`.
 - Support to open `html` files to preview in browser.
-- minify `.js` and `.css` files.
+- minify `javascript` and `css` files.
+- Beautify `javascript`, `json`, `css`, `sass`, and `html`.
 
 | Before Compile | After Compile |
 | -------------- | ------------- |

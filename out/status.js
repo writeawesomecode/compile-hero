@@ -33,7 +33,6 @@ class StatusBarUi {
         StatusBarUi.statusBarItem.tooltip = 'In case if it takes long time, Show output window and report.';
         StatusBarUi.statusBarItem.command = undefined;
     }
-    // Quick status bar messages after compile success or error
     static compilationSuccess(isWatching) {
         StatusBarUi.statusBarItem.text = `$(check) Success`;
         StatusBarUi.statusBarItem.color = '#33ff00';
@@ -67,4 +66,4 @@ class StatusBarUi {
     }
 }
 exports.StatusBarUi = StatusBarUi;
-//# sourceMappingURL=statusBarUi.js.map
+//# sourceMappingURL=status.js.map

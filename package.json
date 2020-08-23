@@ -58,7 +58,8 @@
     "easysass",
     "easy",
     "super",
-    "minified"
+    "minified",
+    "format"
   ],
   "activationEvents": [
     "*",
@@ -66,7 +67,9 @@
     "onCommand:compile-hero.closePort",
     "onCommand:compile-hero.compileFile",
     "onCommand:compile-hero.compileHeroOn",
-    "onCommand:compile-hero.compileHeroOff"
+    "onCommand:compile-hero.compileHeroOff",
+    "onCommand:compile-hero.beautify",
+    "onCommand:compile-hero.beautifyFile"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -82,6 +85,32 @@
       {
         "command": "compile-hero.compileFile",
         "title": "Compile Files"
+      },
+      {
+        "command": "compile-hero.beautify",
+        "title": "Beautify"
+      },
+      {
+        "command": "compile-hero.beautifyFile",
+        "title": "Beautify File"
+      }
+    ],
+    "languages": [
+      {
+        "id": "json",
+        "aliases": [
+          "JSON"
+        ],
+        "filenames": [
+          ".jsbeautifyrc",
+          ".jshintrc"
+        ]
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": ".jsbeautifyrc",
+        "url": "./beautifyrc.json"
       }
     ],
     "configuration": {
@@ -186,6 +215,157 @@
           "type": "boolean",
           "default": false,
           "description": "Enable to generate minified javascript (*.dev.js) files."
+        },
+        "compile-hero.ignore": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "List of paths to ignore when using VS Code format command, including format on save. Uses glob pattern matching.",
+          "scope": "resource"
+        },
+        "compile-hero.config": {
+          "type": [
+            "string",
+            "object",
+            "null"
+          ],
+          "default": null,
+          "description": "A path to a file, or an object containing the configuration options for js-beautify. If the .jsbeautifyrc file exists in project root, it overrides this configuration."
+        },
+        "compile-hero.language": {
+          "type": "object",
+          "description": "Link file types to the beautifier type",
+          "default": {
+            "js": {
+              "type": [
+                "javascript",
+                "json",
+                "jsonc"
+              ],
+              "filename": [
+                ".jshintrc",
+                ".jsbeautifyrc"
+              ]
+            },
+            "css": [
+              "css",
+              "less",
+              "scss"
+            ],
+            "html": [
+              "htm",
+              "html"
+            ]
+          },
+          "properties": {
+            "js": {
+              "type": [
+                "object",
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "description": "Array of language types, or an object containing types, extensions and filenames to associate",
+              "properties": {
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "VS Code language name"
+                },
+                "ext": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "File extensions (without the leading dot)"
+                },
+                "filename": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Full filenames (eg: '.jsbeautifyrc')"
+                }
+              }
+            },
+            "css": {
+              "type": [
+                "object",
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "description": "Array of language types, or an object containing types, extensions and filenames to associate",
+              "properties": {
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "VS Code language name"
+                },
+                "ext": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "File extensions (without the leading dot)"
+                },
+                "filename": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Full filenames (eg: '.jsbeautifyrc')"
+                }
+              }
+            },
+            "html": {
+              "type": [
+                "object",
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "description": "Array of language types, or an object containing types, extensions and filenames to associate",
+              "properties": {
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "VS Code language name"
+                },
+                "ext": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "File extensions (without the leading dot)"
+                },
+                "filename": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Full filenames (eg: '.jsbeautifyrc')"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -235,6 +415,7 @@
     "@babel/preset-env": "^7.7.1",
     "@types/mocha": "^2.2.42",
     "@types/node": "^10.12.21",
+    "editorconfig": "^0.15.3",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-jade": "^1.1.0",
@@ -243,6 +424,8 @@
     "gulp-rename": "^1.4.0",
     "gulp-typescript": "^5.0.1",
     "gulp-uglify": "^3.0.2",
+    "js-beautify": "^1.13.0",
+    "minimatch": "^3.0.4",
     "open": "^6.4.0",
     "pug": "^2.0.4",
     "sass": "^1.26.10",

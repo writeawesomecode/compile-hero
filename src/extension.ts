@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as p from "path";
 import { exec } from "child_process";
-import { StatusBarUi } from './statusBarUi';
+import { StatusBarUi } from './status';
 const { src, dest } = require("gulp");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
@@ -16,6 +16,7 @@ const pug = require("pug");
 const open = require("open");
 const through = require("through2");
 const sass = require("sass");
+const { formatters, formatActiveDocument } = require("./beautify");
 const successMessage = "✔ Compilation Successed!";
 const errorMessage = "❌ Compilation Failed!";
 
@@ -365,6 +366,10 @@ const readFileName = async (path: string, fileContext: string) => {
       break;
   }
 };
+
+
+
+
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, compile hero is now active!');
   let openInBrowser = vscode.commands.registerCommand(
@@ -430,16 +435,25 @@ export function activate(context: vscode.ExtensionContext) {
     () => {
       let config = vscode.workspace.getConfiguration("compile-hero");
       config.update("disable-compile-files-on-did-save-code", false);
-      console.log(config);
       StatusBarUi.watching();
     }
   );
+
+  formatters.configure();
+  let beautify = vscode.commands.registerCommand('compile-hero.beautify', formatActiveDocument.bind(0, true));
+  let beautifyFile = vscode.commands.registerCommand('compile-hero.beautifyFile', formatActiveDocument.bind(0, false));
+  let formattersConfigure = vscode.workspace.onDidChangeConfiguration(formatters.configure.bind(formatters));
+  let formattersOnFileOpen = vscode.workspace.onDidOpenTextDocument(formatters.onFileOpen.bind(formatters));
 
   context.subscriptions.push(openInBrowser);
   context.subscriptions.push(closePort);
   context.subscriptions.push(compileFile);
   context.subscriptions.push(compileHeroOn);
   context.subscriptions.push(compileHeroOff);
+  context.subscriptions.push(beautify);
+  context.subscriptions.push(beautifyFile);
+  context.subscriptions.push(formattersConfigure);
+  context.subscriptions.push(formattersOnFileOpen);
 
   vscode.workspace.onDidSaveTextDocument((document) => {
     let config = vscode.workspace.getConfiguration("compile-hero");
