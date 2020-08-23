@@ -405,8 +405,9 @@ const packageJson = {
         }
     },
     "scripts": {
-        "build": "npm run build:compile.hero && npm run build:beautify",
+        "build": "npm run build:delete.vsix && npm run build:compile.hero && npm run build:beautify",
         "vscode:prepublish": "yarn run compile",
+        "build:delete.vsix": "node publish d",
         "build:compile.hero": "node publish c && vsce package",
         "build:beautify": "node publish b && vsce package",
         "compile": "tsc -p ./",
@@ -440,12 +441,22 @@ const packageJson = {
     }
 }
 
+const deleteVsix = (uri) => {
+    const files = fs.readdirSync(uri);
+    files.forEach((filename) => {
+        if (filename.indexOf('vsix') >= 0) {
+            fs.unlinkSync(filename);
+        }
+    });
+};
+
+
 switch (process.argv[2]) {
     case 'c':
         packageJson.name = "qf";
         packageJson.displayName = "Beautify Javascript/Json/Css/Sass/Html";
         packageJson.description = "🚀Beautify javascript, json, css, sass and html.";
-        packageJson.version = "6.8.72";
+        packageJson.version = "6.8.75";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
@@ -459,5 +470,7 @@ switch (process.argv[2]) {
         packageJson.icon = "logos/hero2.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
         break;
+    case 'd':
+        deleteVsix(__dirname);
 }
 
