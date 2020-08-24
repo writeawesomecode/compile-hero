@@ -61,7 +61,9 @@ const packageJson = {
         "super",
         "minified",
         "format",
-        "json"
+        "json",
+        "formatter",
+        "beautify"
     ],
     "activationEvents": [
         "*",
@@ -454,9 +456,9 @@ const deleteVsix = (uri) => {
 switch (process.argv[2]) {
     case 'c':
         packageJson.name = "qf";
-        packageJson.displayName = "Beautify Javascript/Json/Css/Sass/Html";
+        packageJson.displayName = "Formatters Hero - Beautify Javascript/Json/Css/Sass/Html";
         packageJson.description = "🚀Beautify javascript, json, css, sass and html.";
-        packageJson.version = "6.8.75";
+        packageJson.version = "6.8.76";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
