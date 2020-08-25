@@ -452,7 +452,6 @@ const deleteVsix = (uri) => {
     });
 };
 
-
 switch (process.argv[2]) {
     case 'c':
         packageJson.name = "qf";
@@ -461,12 +460,14 @@ switch (process.argv[2]) {
         packageJson.version = "6.8.76";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
+        packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = true;
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
         break;
     case 'b':
         packageJson.name = "eno";
         packageJson.displayName = "Sass/Less/Scss/Typescript/Javascript/Jade/Pug Compile Hero Pro";
         packageJson.description = "🚀Easy to compile ts, tsx, scss, less, jade, pug and es6+ on save without using a build task.";
+        packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = false;
         packageJson.version = "2.3.10";
         packageJson.preview = true;
         packageJson.icon = "logos/hero2.png";
@@ -475,4 +476,3 @@ switch (process.argv[2]) {
     case 'd':
         deleteVsix(__dirname);
 }
-
