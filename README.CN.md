@@ -105,7 +105,7 @@
 
 要玩转H5这个插件你值得拥有！
 
-如果你觉得有用，你可以给我们[留言和点赞](https://marketplace.visualstudio.com/items?itemName=Wscats.qf&ssr=false#review-details)，你的支持是我们前进的动力😀
+如果你觉得有用，你可以给我们[留言和点赞](https://marketplace.visualstudio.com/items?itemName=Wscats.qf&ssr=false#review-details)，你的支持是我们前进的最大动力😀
 
 
 # 协议
