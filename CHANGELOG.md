@@ -29,6 +29,7 @@
 - 2020-08-18 Fix compilation failure due to relative path of sass - [Bug: Do Sass partials (_variables.scss) work](https://github.com/Wscats/compile-hero/issues/38).
 - 2020-08-20 After the extension is successfully installed, it should work normally by default - [Fix: Press Ctrl+s and no css file is generated](https://github.com/Wscats/compile-hero/issues/36).
 - 2020-08-23 Support to beautify `javascript`, `json`, `css`, `sass`, and `html`.
+- 2020-08-29 Update detailed [Chinese documents](https://github.com/Wscats/compile-hero/blob/master/README.CN.md).
 
 # Unreleased
 

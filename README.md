@@ -6,6 +6,8 @@
 
 <!-- [English](https://github.com/Wscats/compile-hero/blob/master/README.md) | [中文](https://github.com/Wscats/compile-hero/blob/master/README.CN.md) -->
 
+[English](https://github.com/Wscats/compile-hero/blob/master/README.md) | [中文](https://github.com/Wscats/compile-hero/blob/master/README.CN.md)
+
 # Features
 
 Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visual Studio Code.
@@ -52,6 +54,7 @@ Click to open the extension management interface `Configure Extension Settings`.
 | -------------------------------------------------------------------------- | ------------- |
 | disable-compile-files-on-did-save-code                                     | false         |
 
+![Demo](screenshots/9.png)
 ![Demo](screenshots/7.gif)
 
 | Output Path Configuration    | Default Value | Compile Switch Status     | Default Value |
