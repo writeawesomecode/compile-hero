@@ -95,12 +95,12 @@
 
 这里列举一个 `.vscode/tsconfig.json` 文件的例子:
 
-```js
+```json
 {
-    "compilerOptions": {
-        "alwaysStrict": true,
-        "importHelpers": false
-    }
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "importHelpers": false
+  }
 }
 ```
 
