@@ -66,6 +66,7 @@ const packageJson = {
         "formatter"
     ],
     "activationEvents": [
+        "*",
         "onCommand:compile-hero.openInBrowser",
         "onCommand:compile-hero.closePort",
         "onCommand:compile-hero.compileFile",
@@ -456,7 +457,7 @@ switch (process.argv[2]) {
         packageJson.name = "qf";
         packageJson.displayName = "Formatters Hero - Beautify Javascript/Json/Css/Sass/Html";
         packageJson.description = "🚀Beautify javascript, json, css, sass and html.";
-        packageJson.version = "6.8.81";
+        packageJson.version = "6.8.82";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
@@ -475,7 +476,7 @@ switch (process.argv[2]) {
             "default": true,
             "description": "Disable compile files on did save code."
         };
-        packageJson.version = "2.3.14";
+        packageJson.version = "2.3.15";
         packageJson.preview = true;
         packageJson.icon = "logos/hero2.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
