@@ -7,28 +7,27 @@
 
 # 特性
 
-支持在 Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`.
+支持在 Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`。
 
-使用之前打开编辑器右下角底部栏开关 `Compile Hero: On` ↓
+> 1.使用之前打开编辑器右下角底部栏开关 `Compile Hero: On` ↓
 
 ![Demo](screenshots/9.png)
 
-> 按快捷键 `(ctrl+s)` 或者在文件列表右键菜单选择 `Compile File(s)` 命令启动编译，将会在该文件的同级目录 `dist` 下生成编译后的文件，希望能你远离 `webpack` 和 `gulp` 等编译工具繁琐的操作.
+> 2.按快捷键 `(ctrl+s)` 或者在文件列表右键菜单选择 `Compile File(s)` 命令启动编译，将会在该文件的同级目录 `dist` 下生成编译后的文件，希望能你远离 `webpack` 和 `gulp` 等编译工具繁琐的操作。
 
 ![Demo](screenshots/3.gif)
 ![Demo](screenshots/6.gif)
 
-> 按快捷键 `(alt+shift+f)` 或者在文件列表右键菜单选择 `Format Document` 将会帮你自动格式化文件.
+> 3.按快捷键 `(alt+shift+f)` 或者在文件列表右键菜单选择 `Format Document` 将会帮你自动格式化文件。
 
-<!-- ![Demo](screenshots/1.gif) -->
 
 ![Demo](screenshots/8.gif)
 
-- 按保存 `Ctrl+S` 会自动编译编译 `less, sass, scss, typescript, jade, pug and jsx` 等文件.
-- 支持 `less, scss, scss` 等文件代码高亮.
-- 支持在默认浏览器打开 `html` 文件.
-- 支持压缩 `javascript` 和 `css` 文件.
-- 支持格式化 `javascript`, `json`, `css`, `sass`, 和 `html` 等文件.
+- 按保存 `Ctrl+S` 会自动编译编译 `less, sass, scss, typescript, jade, pug and jsx` 等文件。
+- 支持 `less, scss, scss` 等文件代码高亮。
+- 支持在默认浏览器打开 `html` 文件。
+- 支持压缩 `javascript` 和 `css` 文件。
+- 支持格式化 `javascript`, `json`, `css`, `sass`, 和 `html` 等文件。
 
 | 编译前      | 编译后   |
 | ----------- | -------- |
@@ -43,7 +42,7 @@
 
 点击插件的配置选项 `Extension Settings`：
 
-> 点击编辑器底部栏右下角 `Compile Hero: On/Off`，可以切换不同语言的自动编译开关
+> 点击编辑器底部栏右下角 `Compile Hero: On/Off`，可以切换不同语言的自动编译开关。
 
 ![Demo](screenshots/7.gif)
 
@@ -51,24 +50,7 @@
 
 ![Demo](screenshots/5.gif)
 
-## 高级配置:
-
-> 在项目根目录下可以新建该目录和文件 `.vscode/settings.json` 配置高级选项.
-
-这里列举一个 `.vscode/settings.json` 文件的例子:
-
-```js
-{
-  "compile-hero": {
-    "disable-compile-files-on-did-save-code": false, // 全局开关，false 为开启自动编译， 默认 true 为开启不自动编译
-    "javascript-output-directory": "./out", // javascript 输出的目录
-    "javascript-output-toggle": false, // 局部开关，true 为开启 javascript 自动编译，false 为不开启 javascript 自动编译
-    "sass-output-directory": "./out", // sass 输出的目录
-    "sass-output-toggle": true // 局部开关，true 为开启 sass 自动编译，false 为不开启 sass 自动编译
-  }
-}
-// 更多配置项：详见下列表格
-```
+具体参数如下：
 
 | 是否开启按 `(ctrl+s)` 时自动编译文件（所有语言的自动编译总开关） | 默认值 |
 | ---------------------------------------------------------------- | ------ |
@@ -87,6 +69,40 @@
 | generate-minified-html         | false  |
 | generate-minified-css          | false  |
 | generate-minified-javascript   | false  |
+
+## 使用 `settings.json`
+
+> 在项目根目录下可以新建该目录和文件 `.vscode/settings.json` 配置高级选项。
+
+这里列举一个 `.vscode/settings.json` 文件的例子:
+
+```js
+{
+  "compile-hero": {
+    "disable-compile-files-on-did-save-code": false, // 全局开关，false 为开启自动编译， 默认 true 为开启不自动编译
+    "javascript-output-directory": "./out", // javascript 输出的目录
+    "javascript-output-toggle": false, // 局部开关，true 为开启 javascript 自动编译，false 为不开启 javascript 自动编译
+    "sass-output-directory": "./out", // sass 输出的目录
+    "sass-output-toggle": true // 局部开关，true 为开启 sass 自动编译，false 为不开启 sass 自动编译
+  }
+}
+// 更多配置项：详见下列表格
+```
+
+## 使用 `tsconfig.json`
+
+> 在 `.ts` 文件的同级目录创建 `tsconfig.json` 文件，这个文件可以覆盖 `typescript` 的默认编译配置。
+
+这里列举一个 `.vscode/tsconfig.json` 文件的例子:
+
+```js
+{
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "importHelpers": false
+    }
+}
+```
 
 # 在浏览器预览页面
 

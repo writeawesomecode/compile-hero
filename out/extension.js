@@ -207,8 +207,9 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
             }
             break;
         case ".ts":
+            const tsProject = ts.createProject(p.join(path, '../tsconfig.json'));
             src(path)
-                .pipe(ts().on("error", (error) => {
+                .pipe(ts().pipe(tsProject()).on("error", (error) => {
                 vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }))
@@ -225,10 +226,11 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
             vscode.window.setStatusBarMessage(successMessage);
             break;
         case ".tsx":
+            const tsxProject = ts.createProject(p.join(path, '../tsconfig.json'));
             src(path)
                 .pipe(ts({
                 jsx: "react",
-            }).on("error", (error) => {
+            }).pipe(tsxProject()).on("error", (error) => {
                 vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }))

@@ -30,6 +30,7 @@
 - 2020-08-20 After the extension is successfully installed, it should work normally by default - [Fix: Press Ctrl+s and no css file is generated](https://github.com/Wscats/compile-hero/issues/36).
 - 2020-08-23 Support to beautify `javascript`, `json`, `css`, `sass`, and `html`.
 - 2020-08-29 Update detailed [Chinese documents](https://github.com/Wscats/compile-hero/blob/master/README.CN.md).
+- 2020-08-30 Add or overwrite certain settings in the `tsconfig.json` file - [Feature: Hero does not seem to use all options of tsconfig.json](https://github.com/Wscats/compile-hero/issues/43).
 
 # Unreleased
 

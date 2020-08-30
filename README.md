@@ -2,9 +2,7 @@
 <a href="https://marketplace.visualstudio.com/items?itemName=Wscats.eno"><img src="https://img.shields.io/badge/Macketplace-v2.00-brightgreen" alt="Macketplace" /></a>
 <a href="https://github.com/Wscats/compile-hero"><img src="https://img.shields.io/badge/Github Page-Wscats-yellow" alt="Github Page" /></a>
 <a href="https://github.com/Wscats"><img src="https://img.shields.io/badge/Author-Eno Yao-blueviolet" alt="Eno Yao" /></a>
-<!-- <a href="https://github.com/Wscats"><img src="https://api.netlify.com/api/v1/badges/b652768b-1673-42cd-98dd-3fd807b2ebca/deploy-status" alt="Status" /></a> -->
 
-<!-- [English](https://github.com/Wscats/compile-hero/blob/master/README.md) | [中文](https://github.com/Wscats/compile-hero/blob/master/README.CN.md) -->
 
 [English](https://github.com/Wscats/compile-hero/blob/master/README.md) | [中文](https://github.com/Wscats/compile-hero/blob/master/README.CN.md)
 
@@ -12,18 +10,16 @@
 
 Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visual Studio Code.
 
-Please turn on the `Compile Hero: On` switch when using ↓
+> 1.Please turn on the `Compile Hero: On` switch when using ↓
 
 ![Demo](screenshots/9.png)
 
-Compile on save `(ctrl+s)` or select `Compile File(s)` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
+> 2.Compile on save `(ctrl+s)` or select `Compile File(s)` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
 
-Beautify on save `(alt+shift+f)` or select `Format Document` on right-click menu item for `javascript, json, css, sass and html`.
-
-<!-- <img src="https://wscats.github.io/compile-hero/screenshots/1.gif" /> -->
 ![Demo](screenshots/1.gif)
-<!-- <img src="https://wscats.github.io/compile-hero/screenshots/3.gif" /> -->
 ![Demo](screenshots/3.gif)
+
+> 3.Beautify on save `(alt+shift+f)` or select `Format Document` on right-click menu item for `javascript, json, css, sass and html`.
 
 ![Demo](screenshots/8.gif)
 
@@ -50,6 +46,8 @@ Easy to use. When you writing a file, press save `ctrl+s` to generate the compil
 
 Click to open the extension management interface `Configure Extension Settings`.
 
+![Demo](screenshots/5.gif)
+
 - You can change the output path of the project compilation directory.
 - Toggle the compile switch of different language.
 - Or disable automatic compilation on save `(ctrl+s)`.
@@ -74,8 +72,7 @@ Click to open the extension management interface `Configure Extension Settings`.
 | generate-minified-css        | false         |
 | generate-minified-javascript | false         |
 
-<!-- <img src="https://wscats.github.io/compile-hero/screenshots/5.gif" /> -->
-![Demo](screenshots/5.gif)
+## Using `settings.json`
 
 Advanced Extension Settings:
 
@@ -84,7 +81,7 @@ Advanced Extension Settings:
 - Alternatively, settings can go in User Settings for global defaults.
 - Use the `compile-hero` key.
 
-Here Example settings.json file:
+Here Example `settings.json` file:
 
 ```json
 {
@@ -98,25 +95,37 @@ Here Example settings.json file:
 }
 ```
 
+## Using `tsconfig.json`
+
+If you want to add or overwrite certain settings in the `tsconfig.json` file, you can create a new `tsconfig.json` in the same directory of your `.ts` file.
+
+Here Example `tsconfig.json` file:
+
+```json
+{
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "importHelpers": false
+    }
+}
+```
+
 # Open In Browser
 
 Right click the `html` file in the directory menu, and the `open in browser` option will appear. You can preview the page in the browser.
 
-<!-- <img src="https://wscats.github.io/compile-hero/screenshots/2.gif" /> -->
 ![Demo](screenshots/2.gif)
 
 # Compile File Menu Item
 
 Sometimes you may not need to automatically compile the file every time you save the file, at this time you can disable the automatic compilation. And use the `Compile File(s)` menu item to replace.
 
-<!-- <img src="https://wscats.github.io/compile-hero/screenshots/6.gif" /> -->
 ![Demo](screenshots/6.gif)
 
 # Close Port Command(MAC)
 
 At some point, you may be using ports for some services. You can use the `Close Port` command to close, but now only supported on mac.
 
-<!-- <img src="https://wscats.github.io/compile-hero/screenshots/4.gif" /> -->
 ![Demo](screenshots/4.gif)
 
 # Thanks
