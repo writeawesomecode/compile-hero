@@ -9,6 +9,10 @@
 
 支持在 Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`.
 
+使用之前打开编辑器右下角底部栏开关 `Compile Hero: On` ↓
+
+![Demo](screenshots/9.png)
+
 > 按快捷键 `(ctrl+s)` 或者在文件列表右键菜单选择 `Compile File(s)` 命令启动编译，将会在该文件的同级目录 `dist` 下生成编译后的文件，希望能你远离 `webpack` 和 `gulp` 等编译工具繁琐的操作.
 
 ![Demo](screenshots/3.gif)
@@ -56,7 +60,7 @@
 ```js
 {
   "compile-hero": {
-    "disable-compile-files-on-did-save-code": false, // 全局开关，true 为不开启自动编译， 默认 false 为开启自动编译
+    "disable-compile-files-on-did-save-code": false, // 全局开关，false 为开启自动编译， 默认 true 为开启不自动编译
     "javascript-output-directory": "./out", // javascript 输出的目录
     "javascript-output-toggle": false, // 局部开关，true 为开启 javascript 自动编译，false 为不开启 javascript 自动编译
     "sass-output-directory": "./out", // sass 输出的目录
@@ -69,8 +73,6 @@
 | 是否开启按 `(ctrl+s)` 时自动编译文件（所有语言的自动编译总开关） | 默认值 |
 | ---------------------------------------------------------------- | ------ |
 | disable-compile-files-on-did-save-code                           | false  |
-
-![Demo](screenshots/9.png)
 
 | 配置文件编译后的目录的输出路径 | 默认值 | 是否开启按 `(ctrl+s)` 时自动编译文件 | 默认值 |
 | ------------------------------ | ------ | ------------------------------------ | ------ |

@@ -12,6 +12,10 @@
 
 Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visual Studio Code.
 
+Please turn on the `Compile Hero: On` switch when using ↓
+
+![Demo](screenshots/9.png)
+
 Compile on save `(ctrl+s)` or select `Compile File(s)` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
 
 Beautify on save `(alt+shift+f)` or select `Format Document` on right-click menu item for `javascript, json, css, sass and html`.
@@ -54,7 +58,6 @@ Click to open the extension management interface `Configure Extension Settings`.
 | -------------------------------------------------------------------------- | ------------- |
 | disable-compile-files-on-did-save-code                                     | false         |
 
-![Demo](screenshots/9.png)
 ![Demo](screenshots/7.gif)
 
 | Output Path Configuration    | Default Value | Compile Switch Status     | Default Value |
