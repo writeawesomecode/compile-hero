@@ -242,7 +242,7 @@ const packageJson = {
                 },
                 "compile-hero.language": {
                     "type": "object",
-                    "description": "Link file types to the beautifier type",
+                    "description": "Link file types to the beautifier type.",
                     "default": {
                         "js": {
                             "type": [
