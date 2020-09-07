@@ -214,13 +214,13 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                 if (isExistsTsconfigPath) {
                     const tsConfig = ts.createProject(tsConfigPath);
                     return ts().pipe(tsConfig()).on("error", (error) => {
-                        vscode.window.showErrorMessage(error.message);
+                        // vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
                 else {
                     return ts().on("error", (error) => {
-                        vscode.window.showErrorMessage(error.message);
+                        // vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
@@ -232,19 +232,19 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                     if (isExistsTsconfigPath) {
                         const tsConfig = ts.createProject(tsConfigPath);
                         return ts().pipe(tsConfig()).on("error", (error) => {
-                            vscode.window.showErrorMessage(error.message);
+                            // vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }
                     else {
                         return ts().on("error", (error) => {
-                            vscode.window.showErrorMessage(error.message);
+                            // vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }
                 })())
                     .pipe(uglify().on("error", (error) => {
-                    vscode.window.showErrorMessage(error.message);
+                    // vscode.window.showErrorMessage(error.message);
                     vscode.window.setStatusBarMessage(errorMessage);
                 }))
                     .pipe(dest(outputPath));
@@ -261,7 +261,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                     return ts({
                         jsx: "react",
                     }).pipe(tsxConfig()).on("error", (error) => {
-                        vscode.window.showErrorMessage(error.message);
+                        // vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
@@ -270,7 +270,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                         jsx: "react",
                     }).on("error", (error) => {
                         console.log(error);
-                        vscode.window.showErrorMessage(error.message);
+                        // vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
@@ -284,7 +284,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                         return ts({
                             jsx: "react",
                         }).pipe(tsxConfig()).on("error", (error) => {
-                            vscode.window.showErrorMessage(error.message);
+                            // vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }
@@ -292,7 +292,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                         return ts({
                             jsx: "react",
                         }).on("error", (error) => {
-                            vscode.window.showErrorMessage(error.message);
+                            // vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }

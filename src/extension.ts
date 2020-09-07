@@ -266,12 +266,12 @@ const readFileName = async (path: string, fileContext: string) => {
           if (isExistsTsconfigPath) {
             const tsConfig = ts.createProject(tsConfigPath);
             return ts().pipe(tsConfig()).on("error", (error: any) => {
-              vscode.window.showErrorMessage(error.message);
+              // vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           } else {
             return ts().on("error", (error: any) => {
-              vscode.window.showErrorMessage(error.message);
+              // vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           }
@@ -283,19 +283,19 @@ const readFileName = async (path: string, fileContext: string) => {
             if (isExistsTsconfigPath) {
               const tsConfig = ts.createProject(tsConfigPath);
               return ts().pipe(tsConfig()).on("error", (error: any) => {
-                vscode.window.showErrorMessage(error.message);
+                // vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             } else {
               return ts().on("error", (error: any) => {
-                vscode.window.showErrorMessage(error.message);
+                // vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             }
           })())
           .pipe(
             uglify().on("error", (error: any) => {
-              vscode.window.showErrorMessage(error.message);
+              // vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           )
@@ -315,7 +315,7 @@ const readFileName = async (path: string, fileContext: string) => {
             return ts({
               jsx: "react",
             }).pipe(tsxConfig()).on("error", (error: any) => {
-              vscode.window.showErrorMessage(error.message);
+              // vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           } else {
@@ -323,7 +323,7 @@ const readFileName = async (path: string, fileContext: string) => {
               jsx: "react",
             }).on("error", (error: any) => {
               console.log(error);
-              vscode.window.showErrorMessage(error.message);
+              // vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           }
@@ -338,14 +338,14 @@ const readFileName = async (path: string, fileContext: string) => {
               return ts({
                 jsx: "react",
               }).pipe(tsxConfig()).on("error", (error: any) => {
-                vscode.window.showErrorMessage(error.message);
+                // vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             } else {
               return ts({
                 jsx: "react",
               }).on("error", (error: any) => {
-                vscode.window.showErrorMessage(error.message);
+                // vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             }
