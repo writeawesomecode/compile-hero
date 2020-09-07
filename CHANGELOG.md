@@ -31,6 +31,7 @@
 - 2020-08-23 Support to beautify `javascript`, `json`, `css`, `sass`, and `html`.
 - 2020-08-29 Update detailed [Chinese documents](https://github.com/Wscats/compile-hero/blob/master/README.CN.md).
 - 2020-08-30 Add or overwrite certain settings in the `tsconfig.json` file - [Feature: Hero does not seem to use all options of tsconfig.json](https://github.com/Wscats/compile-hero/issues/43).
+- 2020-09-07 Typescript file is compiling successfully, but a notification appear on right bottom that says there's a compile error - [Bug: Typescript Compile Bug](https://github.com/Wscats/compile-hero/issues/55).
 
 # Unreleased
 

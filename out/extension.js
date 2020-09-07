@@ -207,16 +207,42 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
             }
             break;
         case ".ts":
-            const tsProject = ts.createProject(p.join(path, '../tsconfig.json'));
+            const tsConfigPath = p.join(path, '../tsconfig.json');
+            const isExistsTsconfigPath = fs.existsSync(tsConfigPath);
             src(path)
-                .pipe(ts().pipe(tsProject()).on("error", (error) => {
-                vscode.window.showErrorMessage(error.message);
-                vscode.window.setStatusBarMessage(errorMessage);
-            }))
+                .pipe((() => {
+                if (isExistsTsconfigPath) {
+                    const tsConfig = ts.createProject(tsConfigPath);
+                    return ts().pipe(tsConfig()).on("error", (error) => {
+                        vscode.window.showErrorMessage(error.message);
+                        vscode.window.setStatusBarMessage(errorMessage);
+                    });
+                }
+                else {
+                    return ts().on("error", (error) => {
+                        vscode.window.showErrorMessage(error.message);
+                        vscode.window.setStatusBarMessage(errorMessage);
+                    });
+                }
+            })())
                 .pipe(dest(outputPath));
             if (compileOptions.generateMinifiedJs) {
                 src(path)
-                    .pipe(ts())
+                    .pipe((() => {
+                    if (isExistsTsconfigPath) {
+                        const tsConfig = ts.createProject(tsConfigPath);
+                        return ts().pipe(tsConfig()).on("error", (error) => {
+                            vscode.window.showErrorMessage(error.message);
+                            vscode.window.setStatusBarMessage(errorMessage);
+                        });
+                    }
+                    else {
+                        return ts().on("error", (error) => {
+                            vscode.window.showErrorMessage(error.message);
+                            vscode.window.setStatusBarMessage(errorMessage);
+                        });
+                    }
+                })())
                     .pipe(uglify().on("error", (error) => {
                     vscode.window.showErrorMessage(error.message);
                     vscode.window.setStatusBarMessage(errorMessage);
@@ -226,25 +252,52 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
             vscode.window.setStatusBarMessage(successMessage);
             break;
         case ".tsx":
-            const tsxProject = ts.createProject(p.join(path, '../tsconfig.json'));
+            const tsxConfigPath = p.join(path, '../tsconfig.json');
+            const isExistsTsxconfigPath = fs.existsSync(tsxConfigPath);
             src(path)
-                .pipe(ts({
-                jsx: "react",
-            }).pipe(tsxProject()).on("error", (error) => {
-                vscode.window.showErrorMessage(error.message);
-                vscode.window.setStatusBarMessage(errorMessage);
-            }))
+                .pipe((() => {
+                if (isExistsTsxconfigPath) {
+                    const tsxConfig = ts.createProject(tsxConfigPath);
+                    return ts({
+                        jsx: "react",
+                    }).pipe(tsxConfig()).on("error", (error) => {
+                        vscode.window.showErrorMessage(error.message);
+                        vscode.window.setStatusBarMessage(errorMessage);
+                    });
+                }
+                else {
+                    return ts({
+                        jsx: "react",
+                    }).on("error", (error) => {
+                        console.log(error);
+                        vscode.window.showErrorMessage(error.message);
+                        vscode.window.setStatusBarMessage(errorMessage);
+                    });
+                }
+            })())
                 .pipe(dest(outputPath));
             if (compileOptions.generateMinifiedJs) {
                 src(path)
-                    .pipe(ts({
-                    jsx: "react",
-                })
+                    .pipe((() => {
+                    if (isExistsTsxconfigPath) {
+                        const tsxConfig = ts.createProject(tsxConfigPath);
+                        return ts({
+                            jsx: "react",
+                        }).pipe(tsxConfig()).on("error", (error) => {
+                            vscode.window.showErrorMessage(error.message);
+                            vscode.window.setStatusBarMessage(errorMessage);
+                        });
+                    }
+                    else {
+                        return ts({
+                            jsx: "react",
+                        }).on("error", (error) => {
+                            vscode.window.showErrorMessage(error.message);
+                            vscode.window.setStatusBarMessage(errorMessage);
+                        });
+                    }
+                })())
                     .pipe(uglify())
-                    .on("error", (error) => {
-                    vscode.window.showErrorMessage(error.message);
-                    vscode.window.setStatusBarMessage(errorMessage);
-                }))
                     .pipe(dest(outputPath));
             }
             vscode.window.setStatusBarMessage(successMessage);
