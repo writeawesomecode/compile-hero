@@ -1,6 +1,7 @@
 # Change Log
 
 - 2017-05-12 Establish a private code repository and implement a simple compilation extension.
+- 2017-12-13 Continuous optimization and improvement, only for internal commercial projects, and plan to open source.
 - 2018-10-24 Start writing documents and tutorials, and adjust the code structure.
 - 2019-11-03 Automatically evaluate documents and generate download links.
 - 2019-11-04 Support compiling `scss` files.
@@ -32,6 +33,7 @@
 - 2020-08-29 Update detailed [Chinese documents](https://github.com/Wscats/compile-hero/blob/master/README.CN.md).
 - 2020-08-30 Add or overwrite certain settings in the `tsconfig.json` file - [Feature: Hero does not seem to use all options of tsconfig.json](https://github.com/Wscats/compile-hero/issues/43).
 - 2020-09-07 Typescript file is compiling successfully, but a notification appear on right bottom that says there's a compile error - [Bug: Typescript Compile Bug](https://github.com/Wscats/compile-hero/issues/55).
+- 2020-09-11 Add a notification toggle option - [Feature: Pop up notification in bottom right corner should have toggle option](https://github.com/Wscats/compile-hero/issues/58).
 
 # Unreleased
 
