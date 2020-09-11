@@ -110,6 +110,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
         ".tsx": config.get("typescriptx-output-toggle"),
         ".pug": config.get("pug-output-toggle"),
     };
+    let notificationStatus = config.get("notification-toggle");
     let compileOptions = {
         generateMinifiedHtml: config.get("generate-minified-html"),
         generateMinifiedCss: config.get("generate-minified-css"),
@@ -148,7 +149,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                 vscode.window.setStatusBarMessage(successMessage);
             }
             catch (error) {
-                vscode.window.showErrorMessage(error.message);
+                notificationStatus && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }
             break;
@@ -161,7 +162,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                 .pipe(babel({
                 presets: [babelEnv],
             }).on("error", (error) => {
-                vscode.window.showErrorMessage(error.message);
+                notificationStatus && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }))
                 .pipe(rename({ suffix: ".dev" }))
@@ -171,7 +172,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                     .pipe(babel({
                     presets: [babelEnv],
                 }).on("error", (error) => {
-                    vscode.window.showErrorMessage(error.message);
+                    notificationStatus && vscode.window.showErrorMessage(error.message);
                     vscode.window.setStatusBarMessage(errorMessage);
                 }))
                     .pipe(uglify())
@@ -183,7 +184,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
         case ".less":
             src(path)
                 .pipe(less().on("error", (error) => {
-                vscode.window.showErrorMessage(error.message);
+                notificationStatus && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }))
                 .pipe(dest(outputPath))
@@ -194,7 +195,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
             if (compileOptions.generateMinifiedCss) {
                 src(path)
                     .pipe(less().on("error", (error) => {
-                    vscode.window.showErrorMessage(error.message);
+                    notificationStatus && vscode.window.showErrorMessage(error.message);
                     vscode.window.setStatusBarMessage(errorMessage);
                 }))
                     .pipe(dest(outputPath))
@@ -214,13 +215,13 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                 if (isExistsTsconfigPath) {
                     const tsConfig = ts.createProject(tsConfigPath);
                     return ts().pipe(tsConfig()).on("error", (error) => {
-                        // vscode.window.showErrorMessage(error.message);
+                        false && vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
                 else {
                     return ts().on("error", (error) => {
-                        // vscode.window.showErrorMessage(error.message);
+                        false && vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
@@ -232,19 +233,19 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                     if (isExistsTsconfigPath) {
                         const tsConfig = ts.createProject(tsConfigPath);
                         return ts().pipe(tsConfig()).on("error", (error) => {
-                            // vscode.window.showErrorMessage(error.message);
+                            false && vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }
                     else {
                         return ts().on("error", (error) => {
-                            // vscode.window.showErrorMessage(error.message);
+                            false && vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }
                 })())
                     .pipe(uglify().on("error", (error) => {
-                    // vscode.window.showErrorMessage(error.message);
+                    false && vscode.window.showErrorMessage(error.message);
                     vscode.window.setStatusBarMessage(errorMessage);
                 }))
                     .pipe(dest(outputPath));
@@ -261,7 +262,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                     return ts({
                         jsx: "react",
                     }).pipe(tsxConfig()).on("error", (error) => {
-                        // vscode.window.showErrorMessage(error.message);
+                        false && vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
@@ -269,8 +270,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                     return ts({
                         jsx: "react",
                     }).on("error", (error) => {
-                        console.log(error);
-                        // vscode.window.showErrorMessage(error.message);
+                        false && vscode.window.showErrorMessage(error.message);
                         vscode.window.setStatusBarMessage(errorMessage);
                     });
                 }
@@ -284,7 +284,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                         return ts({
                             jsx: "react",
                         }).pipe(tsxConfig()).on("error", (error) => {
-                            // vscode.window.showErrorMessage(error.message);
+                            false && vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }
@@ -292,7 +292,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                         return ts({
                             jsx: "react",
                         }).on("error", (error) => {
-                            // vscode.window.showErrorMessage(error.message);
+                            false && vscode.window.showErrorMessage(error.message);
                             vscode.window.setStatusBarMessage(errorMessage);
                         });
                     }
@@ -307,14 +307,14 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                 .pipe(jade({
                 pretty: true,
             }).on("error", (error) => {
-                vscode.window.showErrorMessage(error.message);
+                notificationStatus && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }))
                 .pipe(dest(outputPath));
             if (compileOptions.generateMinifiedHtml) {
                 src(path)
                     .pipe(jade().on("error", (error) => {
-                    vscode.window.showErrorMessage(error.message);
+                    notificationStatus && vscode.window.showErrorMessage(error.message);
                     vscode.window.setStatusBarMessage(errorMessage);
                 }))
                     .pipe(rename({ suffix: ".min" }))
@@ -330,7 +330,7 @@ const readFileName = (path, fileContext) => __awaiter(void 0, void 0, void 0, fu
                 });
             }
             catch (error) {
-                vscode.window.showErrorMessage(error.message);
+                notificationStatus && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
             }
             if (compileOptions.generateMinifiedHtml) {

@@ -58,6 +58,10 @@ Click to open the extension management interface `Configure Extension Settings`.
 
 ![Demo](screenshots/7.gif)
 
+| Switch to control the notification | Default Value |
+| ---------------------------------- | ------------- |
+| notification-toggle | true |
+
 | Output Path Configuration    | Default Value | Compile Switch Status     | Default Value |
 | ---------------------------- | ------------- | ------------------------- | ------------- |
 | javascript-output-directory  | ./dist        | javascript-output-toggle  | true          |
@@ -71,6 +75,7 @@ Click to open the extension management interface `Configure Extension Settings`.
 | generate-minified-html       | false         |
 | generate-minified-css        | false         |
 | generate-minified-javascript | false         |
+
 
 ## Using `settings.json`
 
@@ -87,10 +92,11 @@ Here Example `settings.json` file:
 {
   "compile-hero": {
     "disable-compile-files-on-did-save-code": false,
+    "notification-toggle": false,
     "javascript-output-directory": "./out",
     "javascript-output-toggle": false,
     "sass-output-directory": "./out",
-    "sass-output-toggle": true
+    "sass-output-toggle": true,
   }
 }
 ```

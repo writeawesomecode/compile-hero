@@ -144,6 +144,8 @@ const readFileName = async (path: string, fileContext: string) => {
     ".pug": config.get<boolean>("pug-output-toggle"),
   };
 
+  let notificationStatus: boolean | undefined = config.get<boolean>("notification-toggle");
+
   let compileOptions: CompileOptions = {
     generateMinifiedHtml: config.get<boolean>("generate-minified-html"),
     generateMinifiedCss: config.get<boolean>("generate-minified-css"),
@@ -188,7 +190,7 @@ const readFileName = async (path: string, fileContext: string) => {
         }
         vscode.window.setStatusBarMessage(successMessage);
       } catch (error) {
-        vscode.window.showErrorMessage(error.message);
+        notificationStatus && vscode.window.showErrorMessage(error.message);
         vscode.window.setStatusBarMessage(errorMessage);
       }
       break;
@@ -204,7 +206,7 @@ const readFileName = async (path: string, fileContext: string) => {
           babel({
             presets: [babelEnv],
           }).on("error", (error: any) => {
-            vscode.window.showErrorMessage(error.message);
+            notificationStatus && vscode.window.showErrorMessage(error.message);
             vscode.window.setStatusBarMessage(errorMessage);
           })
         )
@@ -216,7 +218,7 @@ const readFileName = async (path: string, fileContext: string) => {
             babel({
               presets: [babelEnv],
             }).on("error", (error: any) => {
-              vscode.window.showErrorMessage(error.message);
+              notificationStatus && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           )
@@ -230,7 +232,7 @@ const readFileName = async (path: string, fileContext: string) => {
       src(path)
         .pipe(
           less().on("error", (error: any) => {
-            vscode.window.showErrorMessage(error.message);
+            notificationStatus && vscode.window.showErrorMessage(error.message);
             vscode.window.setStatusBarMessage(errorMessage);
           })
         )
@@ -244,7 +246,7 @@ const readFileName = async (path: string, fileContext: string) => {
         src(path)
           .pipe(
             less().on("error", (error: any) => {
-              vscode.window.showErrorMessage(error.message);
+              notificationStatus && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           )
@@ -266,12 +268,12 @@ const readFileName = async (path: string, fileContext: string) => {
           if (isExistsTsconfigPath) {
             const tsConfig = ts.createProject(tsConfigPath);
             return ts().pipe(tsConfig()).on("error", (error: any) => {
-              // vscode.window.showErrorMessage(error.message);
+              false && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           } else {
             return ts().on("error", (error: any) => {
-              // vscode.window.showErrorMessage(error.message);
+              false && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           }
@@ -283,19 +285,19 @@ const readFileName = async (path: string, fileContext: string) => {
             if (isExistsTsconfigPath) {
               const tsConfig = ts.createProject(tsConfigPath);
               return ts().pipe(tsConfig()).on("error", (error: any) => {
-                // vscode.window.showErrorMessage(error.message);
+                false && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             } else {
               return ts().on("error", (error: any) => {
-                // vscode.window.showErrorMessage(error.message);
+                false && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             }
           })())
           .pipe(
             uglify().on("error", (error: any) => {
-              // vscode.window.showErrorMessage(error.message);
+              false && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           )
@@ -315,15 +317,14 @@ const readFileName = async (path: string, fileContext: string) => {
             return ts({
               jsx: "react",
             }).pipe(tsxConfig()).on("error", (error: any) => {
-              // vscode.window.showErrorMessage(error.message);
+              false && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           } else {
             return ts({
               jsx: "react",
             }).on("error", (error: any) => {
-              console.log(error);
-              // vscode.window.showErrorMessage(error.message);
+              false && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           }
@@ -338,14 +339,14 @@ const readFileName = async (path: string, fileContext: string) => {
               return ts({
                 jsx: "react",
               }).pipe(tsxConfig()).on("error", (error: any) => {
-                // vscode.window.showErrorMessage(error.message);
+                false && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             } else {
               return ts({
                 jsx: "react",
               }).on("error", (error: any) => {
-                // vscode.window.showErrorMessage(error.message);
+                false && vscode.window.showErrorMessage(error.message);
                 vscode.window.setStatusBarMessage(errorMessage);
               })
             }
@@ -361,7 +362,7 @@ const readFileName = async (path: string, fileContext: string) => {
           jade({
             pretty: true,
           }).on("error", (error: any) => {
-            vscode.window.showErrorMessage(error.message);
+            notificationStatus && vscode.window.showErrorMessage(error.message);
             vscode.window.setStatusBarMessage(errorMessage);
           })
         )
@@ -370,7 +371,7 @@ const readFileName = async (path: string, fileContext: string) => {
         src(path)
           .pipe(
             jade().on("error", (error: any) => {
-              vscode.window.showErrorMessage(error.message);
+              notificationStatus && vscode.window.showErrorMessage(error.message);
               vscode.window.setStatusBarMessage(errorMessage);
             })
           )
@@ -386,7 +387,7 @@ const readFileName = async (path: string, fileContext: string) => {
           pretty: true,
         });
       } catch (error) {
-        vscode.window.showErrorMessage(error.message);
+        notificationStatus && vscode.window.showErrorMessage(error.message);
         vscode.window.setStatusBarMessage(errorMessage);
       }
       if (compileOptions.generateMinifiedHtml) {

@@ -56,6 +56,10 @@
 | ---------------------------------------------------------------- | ------ |
 | disable-compile-files-on-did-save-code                           | false  |
 
+| 编译失败左下角弹窗提醒开关 | 默认值 |
+| --------------------- | ----- |
+| notification-toggle | true |
+
 | 配置文件编译后的目录的输出路径 | 默认值 | 是否开启按 `(ctrl+s)` 时自动编译文件 | 默认值 |
 | ------------------------------ | ------ | ------------------------------------ | ------ |
 | javascript-output-directory    | ./dist | javascript-output-toggle             | true   |
@@ -80,10 +84,11 @@
 {
   "compile-hero": {
     "disable-compile-files-on-did-save-code": false, // 全局开关，false 为开启自动编译， 默认 true 为开启不自动编译
+    "notification-toggle": false, // 关闭编译失败时候右下角的弹窗提醒
     "javascript-output-directory": "./out", // javascript 输出的目录
     "javascript-output-toggle": false, // 局部开关，true 为开启 javascript 自动编译，false 为不开启 javascript 自动编译
     "sass-output-directory": "./out", // sass 输出的目录
-    "sass-output-toggle": true // 局部开关，true 为开启 sass 自动编译，false 为不开启 sass 自动编译
+    "sass-output-toggle": true, // 局部开关，true 为开启 sass 自动编译，false 为不开启 sass 自动编译
   }
 }
 // 更多配置项：详见下列表格
