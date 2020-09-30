@@ -116,7 +116,6 @@ Here Example `tsconfig.json` file:
 ```json
 {
   "compilerOptions": {
-    ""
     "alwaysStrict": true,
     "importHelpers": false
   }
