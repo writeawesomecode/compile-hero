@@ -234,7 +234,7 @@ const packageJson = {
                         "type": "string"
                     },
                     "default": [],
-                    "description": "List of paths to ignore when using VS Code format command, including format on save. Uses glob pattern matching.",
+                    "description": "List of paths to ignore when using format or compile command, including format or compile on save, uses glob pattern matching.",
                     "scope": "resource"
                 },
                 "compile-hero.config": {
@@ -244,7 +244,7 @@ const packageJson = {
                         "null"
                     ],
                     "default": null,
-                    "description": "A path to a file, or an object containing the configuration options for js-beautify. If the .jsbeautifyrc file exists in project root, it overrides this configuration."
+                    "description": "A path to a file, or an object containing the configuration options for js-beautify, if the .jsbeautifyrc file exists in project root, it overrides this configuration."
                 },
                 "compile-hero.language": {
                     "type": "object",
