@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
-import * as p from "path";
+import * as path from "path";
 import { exec } from "child_process";
 import { StatusBarUi } from './status';
 const { src, dest } = require("gulp");
@@ -19,6 +19,7 @@ const sass = require("sass");
 const { formatters, formatActiveDocument } = require("./beautify");
 const successMessage = "✔ Compilation Successed!";
 const errorMessage = "❌ Compilation Failed!";
+const minimatch = require('minimatch');
 
 const readFileContext = (path: string): string => {
   return fs.readFileSync(path).toString();
@@ -65,14 +66,13 @@ const empty = function (code: string) {
 };
 
 const complieFile = (uri: string) => {
-  const fileContext: string = readFileContext(uri);
-  readFileName(uri, fileContext);
+  readFileName({ fileName: uri });
 };
 
 const complieDir = (uri: string) => {
   const files = fs.readdirSync(uri);
   files.forEach((filename) => {
-    const fileUrl = p.join(uri, filename);
+    const fileUrl = path.join(uri, filename);
     const fileStats = fs.statSync(fileUrl);
     if (fileStats.isDirectory()) {
       complieDir(fileUrl);
@@ -80,6 +80,16 @@ const complieDir = (uri: string) => {
       complieFile(fileUrl);
     }
   });
+};
+
+// 获取工作区位置
+const getWorkspaceRoot = (doc: vscode.TextDocument) => {
+  if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) return;
+  if (!doc || doc.isUntitled) return vscode.workspace.workspaceFolders[0].uri.fsPath;
+
+  const folder = vscode.workspace.getWorkspaceFolder(doc.uri);
+  if (!folder) return;
+  return folder.uri.fsPath;
 };
 
 interface OutputDirectoryPath {
@@ -120,8 +130,9 @@ type FileSuffix =
   | ".tsx"
   | ".pug";
 
-const readFileName = async (path: string, fileContext: string) => {
-  let fileSuffix: FileSuffix = fileType(path);
+const readFileName = async ({ fileName }: { fileName: string }) => {
+  let workspaceRootPath = vscode.workspace.rootPath;
+  let fileSuffix: FileSuffix = fileType(fileName);
   let config = vscode.workspace.getConfiguration("compile-hero");
   let outputDirectoryPath: OutputDirectoryPath = {
     ".js": config.get<string>("javascript-output-directory") || "",
@@ -143,6 +154,13 @@ const readFileName = async (path: string, fileContext: string) => {
     ".tsx": config.get<boolean>("typescriptx-output-toggle"),
     ".pug": config.get<boolean>("pug-output-toggle"),
   };
+  let ignore = config.get<string[] | string>("ignore") || [];
+
+  if (workspaceRootPath && fileName.startsWith(workspaceRootPath)) {
+    let relativePath = path.relative(workspaceRootPath, fileName);
+    if (!Array.isArray(ignore)) { ignore = [ignore] };
+    if (ignore.some(glob => minimatch(relativePath, glob))) return;
+  };
 
   let notificationStatus: boolean | undefined = config.get<boolean>("notification-toggle");
 
@@ -153,14 +171,14 @@ const readFileName = async (path: string, fileContext: string) => {
   };
 
   if (!compileStatus[fileSuffix]) return;
-  let outputPath = p.resolve(path, "../", outputDirectoryPath[fileSuffix]);
+  let outputPath = path.resolve(fileName, "../", outputDirectoryPath[fileSuffix]);
   switch (fileSuffix) {
     case ".scss":
     case ".sass":
       try {
-        const { css } = sass.renderSync({ file: path });
+        const { css } = sass.renderSync({ file: fileName });
         const text = css.toString();
-        src(path)
+        src(fileName)
           .pipe(empty(text))
           .pipe(
             rename({
@@ -171,7 +189,7 @@ const readFileName = async (path: string, fileContext: string) => {
           .pipe(dest(outputPath));
 
         if (compileOptions.generateMinifiedCss) {
-          src(path)
+          src(fileName)
             .pipe(empty(text))
             .pipe(
               rename({
@@ -195,13 +213,13 @@ const readFileName = async (path: string, fileContext: string) => {
       }
       break;
     case ".js":
-      if (/.dev.js|.prod.js$/g.test(path)) {
+      if (/.dev.js|.prod.js$/g.test(fileName)) {
         vscode.window.setStatusBarMessage(
           `The prod or dev file has been processed and will not be compiled`
         );
         break;
       }
-      src(path)
+      src(fileName)
         .pipe(
           babel({
             presets: [babelEnv],
@@ -213,7 +231,7 @@ const readFileName = async (path: string, fileContext: string) => {
         .pipe(rename({ suffix: ".dev" }))
         .pipe(dest(outputPath));
       if (compileOptions.generateMinifiedJs) {
-        src(path)
+        src(fileName)
           .pipe(
             babel({
               presets: [babelEnv],
@@ -229,7 +247,7 @@ const readFileName = async (path: string, fileContext: string) => {
       vscode.window.setStatusBarMessage(successMessage);
       break;
     case ".less":
-      src(path)
+      src(fileName)
         .pipe(
           less().on("error", (error: any) => {
             notificationStatus && vscode.window.showErrorMessage(error.message);
@@ -243,7 +261,7 @@ const readFileName = async (path: string, fileContext: string) => {
         });
 
       if (compileOptions.generateMinifiedCss) {
-        src(path)
+        src(fileName)
           .pipe(
             less().on("error", (error: any) => {
               notificationStatus && vscode.window.showErrorMessage(error.message);
@@ -260,10 +278,10 @@ const readFileName = async (path: string, fileContext: string) => {
       }
       break;
     case ".ts":
-      const tsConfigPath = p.join(path, '../tsconfig.json');
+      const tsConfigPath = path.join(fileName, '../tsconfig.json');
       const isExistsTsconfigPath = fs.existsSync(tsConfigPath)
 
-      src(path)
+      src(fileName)
         .pipe((() => {
           if (isExistsTsconfigPath) {
             const tsConfig = ts.createProject(tsConfigPath);
@@ -280,7 +298,7 @@ const readFileName = async (path: string, fileContext: string) => {
         })())
         .pipe(dest(outputPath));
       if (compileOptions.generateMinifiedJs) {
-        src(path)
+        src(fileName)
           .pipe((() => {
             if (isExistsTsconfigPath) {
               const tsConfig = ts.createProject(tsConfigPath);
@@ -307,10 +325,10 @@ const readFileName = async (path: string, fileContext: string) => {
 
       break;
     case ".tsx":
-      const tsxConfigPath = p.join(path, '../tsconfig.json');
+      const tsxConfigPath = path.join(fileName, '../tsconfig.json');
       const isExistsTsxconfigPath = fs.existsSync(tsxConfigPath);
 
-      src(path)
+      src(fileName)
         .pipe((() => {
           if (isExistsTsxconfigPath) {
             const tsxConfig = ts.createProject(tsxConfigPath);
@@ -332,7 +350,7 @@ const readFileName = async (path: string, fileContext: string) => {
         .pipe(dest(outputPath));
 
       if (compileOptions.generateMinifiedJs) {
-        src(path)
+        src(fileName)
           .pipe((() => {
             if (isExistsTsxconfigPath) {
               const tsxConfig = ts.createProject(tsxConfigPath);
@@ -357,7 +375,7 @@ const readFileName = async (path: string, fileContext: string) => {
       vscode.window.setStatusBarMessage(successMessage);
       break;
     case ".jade":
-      src(path)
+      src(fileName)
         .pipe(
           jade({
             pretty: true,
@@ -368,7 +386,7 @@ const readFileName = async (path: string, fileContext: string) => {
         )
         .pipe(dest(outputPath));
       if (compileOptions.generateMinifiedHtml) {
-        src(path)
+        src(fileName)
           .pipe(
             jade().on("error", (error: any) => {
               notificationStatus && vscode.window.showErrorMessage(error.message);
@@ -383,7 +401,7 @@ const readFileName = async (path: string, fileContext: string) => {
     case ".pug":
       let html = "";
       try {
-        html = pug.renderFile(path, {
+        html = pug.renderFile(fileName, {
           pretty: true,
         });
       } catch (error) {
@@ -391,7 +409,7 @@ const readFileName = async (path: string, fileContext: string) => {
         vscode.window.setStatusBarMessage(errorMessage);
       }
       if (compileOptions.generateMinifiedHtml) {
-        src(path)
+        src(fileName)
           .pipe(empty(html))
           .pipe(
             rename({
@@ -399,7 +417,7 @@ const readFileName = async (path: string, fileContext: string) => {
             })
           )
           .pipe(dest(outputPath))
-          .pipe(empty(pug.renderFile(path)))
+          .pipe(empty(pug.renderFile(fileName)))
           .pipe(
             rename({
               suffix: ".min",
@@ -510,8 +528,7 @@ export function activate(context: vscode.ExtensionContext) {
       config.get<string>("disable-compile-files-on-did-save-code") || "";
     if (isDisableOnDidSaveTextDocument) return;
     const { fileName } = document;
-    const fileContext: string = readFileContext(fileName);
-    readFileName(fileName, fileContext);
+    readFileName({ fileName });
   });
 
   StatusBarUi.init(vscode.workspace.getConfiguration("compile-hero").get<string>("disable-compile-files-on-did-save-code") || "");

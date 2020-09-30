@@ -89,6 +89,7 @@
     "javascript-output-toggle": false, // 局部开关，true 为开启 javascript 自动编译，false 为不开启 javascript 自动编译
     "sass-output-directory": "./out", // sass 输出的目录
     "sass-output-toggle": true, // 局部开关，true 为开启 sass 自动编译，false 为不开启 sass 自动编译
+    "ignore": ["src/test.js", "*/test.scss", "**/spec/*", "**/src/**/*"], // 禁止文件自动格式化和编译
   }
 }
 // 更多配置项：详见下列表格

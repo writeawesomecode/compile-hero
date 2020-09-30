@@ -62,6 +62,10 @@ Click to open the extension management interface `Configure Extension Settings`.
 | ---------------------------------- | ------------- |
 | notification-toggle | true |
 
+| Switch to control compilation and formatting of specific files | Default Value |
+| ---------------------------------- | ------------- |
+| ignore | null |
+
 | Output Path Configuration    | Default Value | Compile Switch Status     | Default Value |
 | ---------------------------- | ------------- | ------------------------- | ------------- |
 | javascript-output-directory  | ./dist        | javascript-output-toggle  | true          |
@@ -85,6 +89,7 @@ Advanced Extension Settings:
 - `settings.json` must exist in the .vscode directory at the root level of your project.
 - Alternatively, settings can go in User Settings for global defaults.
 - Use the `compile-hero` key.
+- Prohibit partial compilation and formatting of specific files `compile-hero.ignore`.
 
 Here Example `settings.json` file:
 
@@ -97,6 +102,7 @@ Here Example `settings.json` file:
     "javascript-output-toggle": false,
     "sass-output-directory": "./out",
     "sass-output-toggle": true,
+    "ignore": ["src/test.js", "*/test.scss", "**/spec/*", "**/src/**/*"],
   }
 }
 ```
