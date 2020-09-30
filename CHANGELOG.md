@@ -34,6 +34,7 @@
 - 2020-08-30 Add or overwrite certain settings in the `tsconfig.json` file - [Feature: Hero does not seem to use all options of tsconfig.json](https://github.com/Wscats/compile-hero/issues/43).
 - 2020-09-07 Typescript file is compiling successfully, but a notification appear on right bottom that says there's a compile error - [Bug: Typescript Compile Bug](https://github.com/Wscats/compile-hero/issues/55).
 - 2020-09-11 Add a notification toggle option - [Feature: Pop up notification in bottom right corner should have toggle option](https://github.com/Wscats/compile-hero/issues/58).
+- 2020-09-30 Support prohibiting partial compilation and formatting of specific files by `compile-hero.ignore` option - [Feature: How to ignore compile child _xxx.scss files](https://github.com/Wscats/compile-hero/issues/56).
 
 # Unreleased
 
