@@ -63,7 +63,8 @@ const packageJson = {
         "minified",
         "format",
         "json",
-        "formatter"
+        "formatter",
+        "formate"
     ],
     "activationEvents": [
         "*",
@@ -460,9 +461,9 @@ const deleteVsix = (uri) => {
 switch (process.argv[2]) {
     case 'c':
         packageJson.name = "qf";
-        packageJson.displayName = "Formatters Hero - Beautify Javascript/Json/Css/Sass/Html";
-        packageJson.description = "🚀Beautify javascript, json, css, sass and html.";
-        packageJson.version = "6.8.87";
+        packageJson.displayName = "Formate Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug";
+        packageJson.description = "🚀Beautify sass, less, scss, typescript, javascript, jade and pug.";
+        packageJson.version = "6.8.88";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
