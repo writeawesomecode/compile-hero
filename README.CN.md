@@ -5,7 +5,9 @@
 
 [English](./README.md) | [中文](./README.CN.md)
 
-# isual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`。
+# 特性
+
+Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`。
 
 > 1.使用之前打开编辑器右下角底部栏开关 `Compile Hero: On` ↓
 
@@ -17,7 +19,6 @@
 ![Demo](./screenshots/6.gif)
 
 > 3.按快捷键 `(alt+shift+f)` 或者在文件列表右键菜单选择 `Format Document` 将会帮你自动格式化文件。
-
 
 ![Demo](./screenshots/8.gif)
 
@@ -55,8 +56,8 @@
 | disable-compile-files-on-did-save-code                           | false  |
 
 | 编译失败左下角弹窗提醒开关 | 默认值 |
-| --------------------- | ----- |
-| notification-toggle | true |
+| -------------------------- | ------ |
+| notification-toggle        | true   |
 
 | 配置文件编译后的目录的输出路径 | 默认值 | 是否开启按 `(ctrl+s)` 时自动编译文件 | 默认值 |
 | ------------------------------ | ------ | ------------------------------------ | ------ |
@@ -114,7 +115,7 @@
 
 ![Demo](./screenshots/2.gif)
 
-# 关闭端口(仅MAC)
+# 关闭端口(仅 MAC)
 
 使用 `Close Port` 命令可以关闭对应的端口。
 
@@ -123,12 +124,12 @@
 # 感谢
 
 | [<img src="https://avatars1.githubusercontent.com/u/17243165?s=460&v=4" width="60px;"/><br /><sub>Eno Yao</sub>](https://github.com/Wscats) | [<img src="https://avatars2.githubusercontent.com/u/5805270?s=460&v=4" width="60px;"/><br /><sub>Aaron Xie</sub>](https://github.com/aaron-xie) | [<img src="https://avatars3.githubusercontent.com/u/12515367?s=460&v=4" width="60px;"/><br /><sub>DK Lan</sub>](https://github.com/dk-lan) | [<img src="https://avatars1.githubusercontent.com/u/30917929?s=460&v=4" width="60px;"/><br /><sub>Yong</sub>](https://github.com/flowerField) | [<img src="https://avatars3.githubusercontent.com/u/33544236?s=460&v=4" width="60px;"/><br /><sub>Li Ting</sub>](https://github.com/Liting1) | <img src="https://wscats.github.io/omi-snippets/images/xin.jpg" width="60px;"/><br /><sub>Xin</sub> | [<img src="https://wscats.github.io/omi-snippets/images/lemon.jpg" width="60px;"/><br /><sub>Lemon</sub>](https://github.com/lemonyyye) | [<img src="https://wscats.github.io/omi-snippets/images/jing.jpg" width="60px;"/><br /><sub>Jing</sub>](https://github.com/vickySC) | [<img src="https://wscats.github.io/omi-snippets/images/lin.jpg" width="60px;"/><br /><sub>Lin</sub>](https://github.com/shirley3790) | [<img src="https://avatars2.githubusercontent.com/u/23230108?s=460&v=4" width="60px;"/><br /><sub>Tian Fly</sub>](https://github.com/tiantengfly) |
-| - | - | - | - | - | - | - | - | - | - |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-要玩转H5这个插件你值得拥有！
 
-如果你觉得有用，你可以给我们[留言和点赞](https://marketplace.visualstudio.com/items?itemName=Wscats.qf&ssr=false#review-details)，你的支持是我们前进的最大动力😀
+要玩转 H5 这个插件你值得拥有！
 
+如果你觉得有用，你可以给我们[留言和点赞](https://marketplace.visualstudio.com/items?itemName=Wscats.qf&ssr=false#review-details)，你的支持是我们前进的最大动力 😀
 
 # 协议
 
