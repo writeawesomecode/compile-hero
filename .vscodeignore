@@ -19,3 +19,6 @@ logos/hero3.png
 logos/hero5.png
 logos/others/*.png
 logos/others/*.jpeg
+publish.js
+test
+push.sh
