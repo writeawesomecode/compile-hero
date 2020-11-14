@@ -3,25 +3,23 @@
 <a href="https://github.com/Wscats/compile-hero"><img src="https://img.shields.io/badge/Github Page-Wscats-yellow" alt="Github Page" /></a>
 <a href="https://github.com/Wscats"><img src="https://img.shields.io/badge/Author-Eno Yao-blueviolet" alt="Eno Yao" /></a>
 
-[English](https://github.com/Wscats/compile-hero/blob/master/README.md) | [中文](https://github.com/Wscats/compile-hero/blob/master/README.CN.md)
+[English](./README.md./) | [中文]N.md)
 
-# 特性
-
-支持在 Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`。
+# isual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`。
 
 > 1.使用之前打开编辑器右下角底部栏开关 `Compile Hero: On` ↓
 
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/9.png?raw=true)
+![Demo](./screenshots/9.png)
 
 > 2.按快捷键 `(ctrl+s)` 或者在文件列表右键菜单选择 `Compile File(s)` 命令启动编译，将会在该文件的同级目录 `dist` 下生成编译后的文件，希望能你远离 `webpack` 和 `gulp` 等编译工具繁琐的操作。
 
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/3.gif?raw=true)
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/6.gif?raw=true)
+![Demo](./screenshots/3.gif)
+![Demo](./screenshots/6.gif)
 
 > 3.按快捷键 `(alt+shift+f)` 或者在文件列表右键菜单选择 `Format Document` 将会帮你自动格式化文件。
 
 
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/8.gif?raw=true)
+![Demo](./screenshots/8.gif)
 
 - 按保存 `Ctrl+S` 会自动编译编译 `less, sass, scss, typescript, jade, pug and jsx` 等文件。
 - 支持 `less, scss, scss` 等文件代码高亮。
@@ -44,11 +42,11 @@
 
 > 点击编辑器底部栏右下角 `Compile Hero: On/Off`，可以切换不同语言的自动编译开关。
 
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/7.gif?raw=true)
+![Demo](./screenshots/7.gif)
 
 > 你可以修改编译后目录和文件的输出位置
 
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/5.gif?raw=true)
+![Demo](./screenshots/5.gif)
 
 具体参数如下：
 
@@ -114,13 +112,13 @@
 
 在目录菜单对着 `xxx.html` 文件点击右键，会出现 `Open In Browser` 选项，可以在启动浏览器中预览 `xxx.html` 该页面。
 
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/2.gif?raw=true)
+![Demo](./screenshots/2.gif)
 
 # 关闭端口(仅MAC)
 
 使用 `Close Port` 命令可以关闭对应的端口。
 
-![Demo](https://github.com/Wscats/compile-hero/blob/master/screenshots/4.gif?raw=true)
+![Demo](./screenshots/4.gif)
 
 # 感谢
 
