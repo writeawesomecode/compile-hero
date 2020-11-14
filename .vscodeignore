@@ -9,8 +9,13 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 tests
-screenshots
+screenshots/*.gif
+screenshots/*.png
 logos/others/**
 README.CN.md
 yarn.lock
 **.vsix
+logos/hero3.png
+logos/hero5.png
+logos/others/*.png
+logos/others/*.jpeg
