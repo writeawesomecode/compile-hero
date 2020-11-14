@@ -3,7 +3,7 @@
 <a href="https://github.com/Wscats/compile-hero"><img src="https://img.shields.io/badge/Github Page-Wscats-yellow" alt="Github Page" /></a>
 <a href="https://github.com/Wscats"><img src="https://img.shields.io/badge/Author-Eno Yao-blueviolet" alt="Eno Yao" /></a>
 
-[English](./README.md./) | [中文]N.md)
+[English](./README.md) | [中文](./README.CN.md)
 
 # isual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`。
 
