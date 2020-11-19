@@ -461,9 +461,9 @@ const deleteVsix = (uri) => {
 switch (process.argv[2]) {
     case 'c':
         packageJson.name = "qf";
-        packageJson.displayName = "Formate Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug";
+        packageJson.displayName = "Formate Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug.";
         packageJson.description = "🧣Beautify sass, less, scss, typescript, javascript, jade and pug.";
-        packageJson.version = "6.8.91";
+        packageJson.version = "6.8.92";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
@@ -482,7 +482,7 @@ switch (process.argv[2]) {
             "default": true,
             "description": "Disable compile files on did save code."
         };
-        packageJson.version = "2.3.23";
+        packageJson.version = "2.3.24";
         packageJson.preview = true;
         packageJson.icon = "logos/hero2.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
