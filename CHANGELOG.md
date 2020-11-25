@@ -27,15 +27,16 @@
 - 2020-05-23 Fix compilation failure due to relative path of pug - [Bug: Pug include tag not working](https://github.com/Wscats/compile-hero/issues/19).
 - 2020-06-21 Add javascript, css, html minified options settings - [Feature: Minified options settings](https://github.com/Wscats/compile-hero/issues/13).
 - 2020-06-27 Support to compile all files in the entire folder
-- 2020-08-18 Fix compilation failure due to relative path of sass - [Bug: Do Sass partials (_variables.scss) work](https://github.com/Wscats/compile-hero/issues/38).
+- 2020-08-18 Fix compilation failure due to relative path of sass - [Bug: Do Sass partials (\_variables.scss) work](https://github.com/Wscats/compile-hero/issues/38).
 - 2020-08-20 After the extension is successfully installed, it should work normally by default - [Fix: Press Ctrl+s and no css file is generated](https://github.com/Wscats/compile-hero/issues/36).
 - 2020-08-23 Support to beautify `javascript`, `json`, `css`, `sass`, and `html`.
 - 2020-08-29 Update detailed [Chinese documents](https://github.com/Wscats/compile-hero/blob/master/README.CN.md).
 - 2020-08-30 Add or overwrite certain settings in the `tsconfig.json` file - [Feature: Hero does not seem to use all options of tsconfig.json](https://github.com/Wscats/compile-hero/issues/43).
 - 2020-09-07 Typescript file is compiling successfully, but a notification appear on right bottom that says there's a compile error - [Bug: Typescript Compile Bug](https://github.com/Wscats/compile-hero/issues/55).
 - 2020-09-11 Add a notification toggle option - [Feature: Pop up notification in bottom right corner should have toggle option](https://github.com/Wscats/compile-hero/issues/58).
-- 2020-09-30 Support prohibiting partial compilation and formatting of specific files by `compile-hero.ignore` option - [Feature: How to ignore compile child _xxx.scss files](https://github.com/Wscats/compile-hero/issues/56).
-- 2020-11-25 Adjust the code directory structure and disassemble it into different loaders for maintenance.
+- 2020-09-30 Support prohibiting partial compilation and formatting of specific files by `compile-hero.ignore` option - [Feature: How to ignore compile child \_xxx.scss files](https://github.com/Wscats/compile-hero/issues/56).
+- 2020-11-24 Adjust the code directory structure and disassemble it into different loaders for maintenance.
+- 2020-11-25 Support selected code block compilation for `jade`, `pug`, `scss` and `less`.
 
 # Unreleased
 
