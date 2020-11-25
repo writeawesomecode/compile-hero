@@ -386,7 +386,7 @@
         "menus": {
             "explorer/context": [
                 {
-                    "when": "editorHasSelection",
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^sass$|^jade$|^pug$/",
                     "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 },
@@ -402,7 +402,7 @@
             ],
             "editor/context": [
                 {
-                    "when": "editorHasSelection",
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^sass$|^jade$|^pug$/",
                     "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 },
@@ -418,7 +418,7 @@
             ],
             "editor/title/context": [
                 {
-                    "when": "editorHasSelection",
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^sass$|^jade$|^pug$/",
                     "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 },
@@ -453,13 +453,13 @@
         "editorconfig": "^0.15.3",
         "gulp": "^4.0.2",
         "gulp-babel": "^8.0.0",
-        "gulp-jade": "^1.1.0",
-        "gulp-less": "^4.0.1",
         "gulp-minify-css": "^1.2.4",
         "gulp-rename": "^1.4.0",
         "gulp-typescript": "^5.0.1",
         "gulp-uglify": "^3.0.2",
+        "jade": "^1.11.0",
         "js-beautify": "^1.13.0",
+        "less": "^3.12.2",
         "minimatch": "^3.0.4",
         "open": "^6.4.0",
         "pug": "^2.0.4",

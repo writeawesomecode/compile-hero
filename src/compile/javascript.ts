@@ -14,7 +14,6 @@ export const javascriptLoader = ({ fileName, outputPath, notificationStatus, com
         return;
     }
 
-
     src(fileName)
         .pipe(
             babel({
