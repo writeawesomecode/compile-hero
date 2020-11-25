@@ -5,24 +5,19 @@ const { src, dest } = require("gulp");
 const rename = require("gulp-rename");
 
 export const pugLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }: loader) => {
-    let html = "";
     try {
-        html = pug.renderFile(fileName, { pretty: true });
-        const fn = pug.compile(selectedText, { pretty: true });
-        html = selectedText ? fn() : html;
+        const html = selectedText ? pug.compile(selectedText, { pretty: true })() : pug.renderFile(fileName, { pretty: true });
+        src(fileName)
+            .pipe(empty(html))
+            .pipe(rename({ extname: ".html" }))
+            .pipe(dest(outputPath));
     } catch (error) {
         notificationStatus && vscode.window.showErrorMessage(error.message);
         vscode.window.setStatusBarMessage(errorMessage);
     }
-    src(fileName)
-        .pipe(empty(html))
-        .pipe(rename({ extname: ".html" }))
-        .pipe(dest(outputPath));
 
     if (compileOptions.generateMinifiedHtml) {
-        html = pug.renderFile(fileName);
-        const fn = pug.compile(selectedText);
-        html = selectedText ? fn() : html;
+        const html = selectedText ? pug.compile(selectedText)() : pug.renderFile(fileName);
         src(fileName)
             .pipe(empty(html))
             .pipe(rename({ suffix: ".min", extname: ".html" }))

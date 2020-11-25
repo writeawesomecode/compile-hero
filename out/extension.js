@@ -59,7 +59,8 @@ function activate(context) {
         }
     });
     let compileSelected = vscode.commands.registerCommand("compile-hero.compileSelected", (path) => {
-        const uri = path.fsPath;
+        var _a;
+        const uri = path ? path.fsPath : (_a = vscode.window.activeTextEditor) === null || _a === void 0 ? void 0 : _a.document.uri.fsPath;
         const selectedText = util_1.getSelectedText();
         util_1.readFileName({ fileName: uri, selectedText });
     });

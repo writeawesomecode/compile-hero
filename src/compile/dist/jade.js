@@ -1,13 +1,14 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.jadeLoader = void 0;
-const util_1 = require("../util");
-const vscode = require("vscode");
-const jade = require("jade");
-const { src, dest } = require("gulp");
-const rename = require("gulp-rename");
-exports.jadeLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }) => {
-    let html = "";
+var util_1 = require("../util");
+var vscode = require("vscode");
+var jade = require("jade");
+var _a = require("gulp"), src = _a.src, dest = _a.dest;
+var rename = require("gulp-rename");
+exports.jadeLoader = function (_a) {
+    var fileName = _a.fileName, outputPath = _a.outputPath, notificationStatus = _a.notificationStatus, compileOptions = _a.compileOptions, selectedText = _a.selectedText;
+    var html = "";
     try {
         html = selectedText ? jade.compile(selectedText, { pretty: true })() : jade.renderFile(fileName, { pretty: true });
     }
@@ -28,4 +29,3 @@ exports.jadeLoader = ({ fileName, outputPath, notificationStatus, compileOptions
     }
     vscode.window.setStatusBarMessage(util_1.successMessage);
 };
-//# sourceMappingURL=jade.js.map

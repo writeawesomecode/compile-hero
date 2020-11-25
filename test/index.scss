@@ -4,15 +4,15 @@
 //   $hue: 0 !default, // Can be overridden by upstream users.
 //   $saturation: 50% // Cannot be overridden by upstream users.
 // );
-// p {
-//   color: red;
-//   span {
-//     background-color: blue;
-//   }
-// }
+
 
 @use 'lib.scss' with ($black: #666);
-
+p {
+    color: red;
+    span {
+      background-color: blue;
+    }
+  }
 
 
 // @import "./index.css";

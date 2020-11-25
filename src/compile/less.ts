@@ -8,8 +8,7 @@ const rename = require("gulp-rename");
 export const lessLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }: loader) => {
     try {
         let css = "";
-        const lessText = readFileContext(fileName);
-        less.render(selectedText || lessText).then((output: any) => {
+        less.render(selectedText || readFileContext(fileName)).then((output: any) => {
             css = output.css;
 
             src(fileName)

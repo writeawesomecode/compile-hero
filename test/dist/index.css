@@ -1,6 +1,11 @@
+code {
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(102, 102, 102, 0.15);
+}
+
 p {
-  color: red1;
+  color: red;
 }
 p span {
-  color: #444123;
+  background-color: blue;
 }

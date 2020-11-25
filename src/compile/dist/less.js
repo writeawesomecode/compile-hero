@@ -1,36 +1,37 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.lessLoader = void 0;
-const util_1 = require("../util");
-const vscode = require("vscode");
-const cssmin = require("gulp-minify-css");
-const { src, dest } = require("gulp");
-const less = require("less");
-const rename = require("gulp-rename");
-exports.lessLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }) => {
+var util_1 = require("../util");
+var vscode = require("vscode");
+var cssmin = require("gulp-minify-css");
+var _a = require("gulp"), src = _a.src, dest = _a.dest;
+var less = require("less");
+var rename = require("gulp-rename");
+exports.lessLoader = function (_a) {
+    var fileName = _a.fileName, outputPath = _a.outputPath, notificationStatus = _a.notificationStatus, compileOptions = _a.compileOptions, selectedText = _a.selectedText;
     try {
-        let css = "";
-        less.render(selectedText || util_1.readFileContext(fileName)).then((output) => {
-            css = output.css;
+        var css_1 = "";
+        less.render(selectedText || util_1.readFileContext(fileName)).then(function (output) {
+            css_1 = output.css;
             src(fileName)
-                .pipe(util_1.empty(css))
+                .pipe(util_1.empty(css_1))
                 .pipe(rename({ extname: ".css" }))
                 .pipe(dest(outputPath))
-                .on("end", () => {
+                .on("end", function () {
                 vscode.window.setStatusBarMessage(util_1.successMessage);
             });
             if (compileOptions.generateMinifiedCss) {
                 src(fileName)
-                    .pipe(util_1.empty(css))
+                    .pipe(util_1.empty(css_1))
                     .pipe(cssmin({ compatibility: "ie7" }))
                     .pipe(rename({ suffix: ".min", extname: ".css" }))
                     .pipe(dest(outputPath))
-                    .on("end", () => {
+                    .on("end", function () {
                     vscode.window.setStatusBarMessage(util_1.successMessage);
                 });
             }
-        }).catch((error) => {
-            const message = error.message + ' in file ' + error.filename + ' line no. ' + error.line;
+        })["catch"](function (error) {
+            var message = error.message + ' in file ' + error.filename + ' line no. ' + error.line;
             notificationStatus && vscode.window.showErrorMessage(message);
             vscode.window.setStatusBarMessage(util_1.errorMessage);
         });
@@ -40,4 +41,3 @@ exports.lessLoader = ({ fileName, outputPath, notificationStatus, compileOptions
         vscode.window.setStatusBarMessage(util_1.errorMessage);
     }
 };
-//# sourceMappingURL=less.js.map

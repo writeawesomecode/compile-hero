@@ -88,6 +88,10 @@
                 "title": "Close Port"
             },
             {
+                "command": "compile-hero.compileSelected",
+                "title": "Compile Selected"
+            },
+            {
                 "command": "compile-hero.compileFile",
                 "title": "Compile Files"
             },
@@ -98,10 +102,6 @@
             {
                 "command": "compile-hero.beautifyFile",
                 "title": "Beautify File"
-            },
-            {
-                "command": "compile-hero.compileSelected",
-                "title": "Compile Selected"
             }
         ],
         "languages": [
@@ -383,13 +383,17 @@
                 }
             }
         },
+        "keybindings": [
+            {
+                "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                "command": "compile-hero.compileSelected",
+                "key": "cmd+shift+s cmd+shift+s",
+                "mac": "cmd+shift+s",
+                "win": "cmd+shift+s"
+            }
+        ],
         "menus": {
             "explorer/context": [
-                {
-                    "when": "editorHasSelection && resourceLangId =~ /^less$|^sass$|^jade$|^pug$/",
-                    "command": "compile-hero.compileSelected",
-                    "group": "navigation"
-                },
                 {
                     "when": "resourceLangId == html",
                     "command": "compile-hero.openInBrowser",
@@ -397,38 +401,43 @@
                 },
                 {
                     "command": "compile-hero.compileFile",
+                    "group": "navigation"
+                },
+                {
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                    "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 }
             ],
             "editor/context": [
                 {
-                    "when": "editorHasSelection && resourceLangId =~ /^less$|^sass$|^jade$|^pug$/",
-                    "command": "compile-hero.compileSelected",
-                    "group": "navigation"
-                },
-                {
                     "when": "resourceLangId == html",
                     "command": "compile-hero.openInBrowser",
                     "group": "open-in-browser"
                 },
                 {
                     "command": "compile-hero.compileFile",
+                    "group": "navigation"
+                },
+                {
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                    "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 }
             ],
             "editor/title/context": [
                 {
-                    "when": "editorHasSelection && resourceLangId =~ /^less$|^sass$|^jade$|^pug$/",
-                    "command": "compile-hero.compileSelected",
-                    "group": "navigation"
-                },
-                {
                     "when": "resourceLangId == html",
                     "command": "compile-hero.openInBrowser",
                     "group": "open-in-browser"
                 },
                 {
                     "command": "compile-hero.compileFile",
+                    "group": "navigation"
+                },
+                {
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                    "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 }
             ]

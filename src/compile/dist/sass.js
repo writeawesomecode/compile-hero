@@ -1,19 +1,20 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.sassLoader = void 0;
-const vscode = require("vscode");
-const { src, dest } = require("gulp");
-const sass = require("sass");
-const cssmin = require("gulp-minify-css");
-const rename = require("gulp-rename");
-const util_1 = require("../util");
-exports.sassLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }) => {
+var vscode = require("vscode");
+var _a = require("gulp"), src = _a.src, dest = _a.dest;
+var sass = require("sass");
+var cssmin = require("gulp-minify-css");
+var rename = require("gulp-rename");
+var util_1 = require("../util");
+exports.sassLoader = function (_a) {
+    var fileName = _a.fileName, outputPath = _a.outputPath, notificationStatus = _a.notificationStatus, compileOptions = _a.compileOptions, selectedText = _a.selectedText;
     try {
-        const text = selectedText || sass.renderSync({ file: fileName }).css.toString();
+        var text = selectedText || sass.renderSync({ file: fileName }).css.toString();
         src(fileName)
             .pipe(util_1.empty(text))
             .pipe(rename({
-            extname: ".css",
+            extname: ".css"
         }))
             .pipe(dest(outputPath))
             .pipe(dest(outputPath));
@@ -21,13 +22,13 @@ exports.sassLoader = ({ fileName, outputPath, notificationStatus, compileOptions
             src(fileName)
                 .pipe(util_1.empty(text))
                 .pipe(rename({
-                extname: ".css",
+                extname: ".css"
             }))
                 .pipe(dest(outputPath))
                 .pipe(cssmin({ compatibility: "ie7" }))
                 .pipe(rename({
                 extname: ".css",
-                suffix: ".min",
+                suffix: ".min"
             }))
                 .pipe(dest(outputPath));
         }
@@ -38,4 +39,3 @@ exports.sassLoader = ({ fileName, outputPath, notificationStatus, compileOptions
         vscode.window.setStatusBarMessage(util_1.errorMessage);
     }
 };
-//# sourceMappingURL=sass.js.map

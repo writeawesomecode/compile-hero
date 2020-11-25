@@ -7,8 +7,7 @@ import { empty, successMessage, errorMessage, loader } from '../util';
 
 export const sassLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }: loader) => {
     try {
-        const { css } = sass.renderSync({ file: fileName });
-        const text = selectedText || css.toString();
+        const text = selectedText || sass.renderSync({ file: fileName }).css.toString();
         src(fileName)
             .pipe(empty(text))
             .pipe(

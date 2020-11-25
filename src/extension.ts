@@ -60,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
   let compileSelected = vscode.commands.registerCommand(
     "compile-hero.compileSelected",
     (path) => {
-      const uri = path.fsPath;
+      const uri = path ? path.fsPath : vscode.window.activeTextEditor?.document.uri.fsPath;
       const selectedText = getSelectedText();
       readFileName({ fileName: uri, selectedText });
     }
