@@ -50,6 +50,7 @@ export interface loader {
     outputPath: string;
     notificationStatus: boolean | undefined;
     compileOptions: CompileOptions;
+    selectedText?: string;
 }
 
 export type FileSuffix =
@@ -123,6 +124,28 @@ export const complieDir = (uri: string) => {
     });
 };
 
+// 获取当前选中的文本
+export const getSelectedText = () => {
+    const documentText = vscode.window.activeTextEditor?.document.getText();
+    if (!documentText) {
+        return "";
+    }
+    const activeSelection = vscode.window.activeTextEditor?.selection;
+    if (activeSelection?.isEmpty) {
+        return "";
+    }
+    const selectStartOffset = vscode.window.activeTextEditor?.document.offsetAt(
+        activeSelection?.start as vscode.Position
+    );
+    const selectEndOffset = vscode.window.activeTextEditor?.document.offsetAt(
+        activeSelection?.end as vscode.Position
+    );
+
+    let selectedText = documentText.slice(selectStartOffset, selectEndOffset).trim();
+    selectedText = selectedText.replace(/\s\s+/g, " ");
+    return selectedText;
+}
+
 // 获取工作区位置
 export const getWorkspaceRoot = (doc: vscode.TextDocument) => {
     if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) return;
@@ -133,7 +156,7 @@ export const getWorkspaceRoot = (doc: vscode.TextDocument) => {
     return folder.uri.fsPath;
 };
 
-export const readFileName = async ({ fileName }: { fileName: string }) => {
+export const readFileName = async ({ fileName, selectedText }: { fileName: string; selectedText?: string }) => {
     let workspaceRootPath = vscode.workspace.rootPath;
     let fileSuffix: FileSuffix = fileType(fileName);
     let config = vscode.workspace.getConfiguration("compile-hero");
@@ -178,25 +201,25 @@ export const readFileName = async ({ fileName }: { fileName: string }) => {
     switch (fileSuffix) {
         case ".scss":
         case ".sass":
-            sassLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            sassLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".js":
-            javascriptLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            javascriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".less":
-            lessLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            lessLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".ts":
-            typescriptLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            typescriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".tsx":
-            typescriptxLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            typescriptxLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".jade":
-            jadeLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            jadeLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".pug":
-            pugLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            pugLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         default:
             console.log("Not Found!");

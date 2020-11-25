@@ -5,10 +5,10 @@ const cssmin = require("gulp-minify-css");
 const rename = require("gulp-rename");
 import { empty, successMessage, errorMessage, loader } from '../util';
 
-export const sassLoader = ({ fileName, outputPath, notificationStatus, compileOptions }: loader) => {
+export const sassLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }: loader) => {
     try {
         const { css } = sass.renderSync({ file: fileName });
-        const text = css.toString();
+        const text = selectedText || css.toString();
         src(fileName)
             .pipe(empty(text))
             .pipe(

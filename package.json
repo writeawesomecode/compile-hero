@@ -70,6 +70,7 @@
         "onCommand:compile-hero.openInBrowser",
         "onCommand:compile-hero.closePort",
         "onCommand:compile-hero.compileFile",
+        "onCommand:compile-hero.compileSelected",
         "onCommand:compile-hero.compileHeroOn",
         "onCommand:compile-hero.compileHeroOff",
         "onCommand:compile-hero.beautify",
@@ -97,6 +98,10 @@
             {
                 "command": "compile-hero.beautifyFile",
                 "title": "Beautify File"
+            },
+            {
+                "command": "compile-hero.compileSelected",
+                "title": "Compile Selected"
             }
         ],
         "languages": [
@@ -381,32 +386,50 @@
         "menus": {
             "explorer/context": [
                 {
+                    "when": "editorHasSelection",
+                    "command": "compile-hero.compileSelected",
+                    "group": "navigation"
+                },
+                {
                     "when": "resourceLangId == html",
                     "command": "compile-hero.openInBrowser",
                     "group": "open-in-browser"
                 },
                 {
-                    "command": "compile-hero.compileFile"
+                    "command": "compile-hero.compileFile",
+                    "group": "navigation"
                 }
             ],
             "editor/context": [
                 {
+                    "when": "editorHasSelection",
+                    "command": "compile-hero.compileSelected",
+                    "group": "navigation"
+                },
+                {
                     "when": "resourceLangId == html",
                     "command": "compile-hero.openInBrowser",
                     "group": "open-in-browser"
                 },
                 {
-                    "command": "compile-hero.compileFile"
+                    "command": "compile-hero.compileFile",
+                    "group": "navigation"
                 }
             ],
             "editor/title/context": [
                 {
+                    "when": "editorHasSelection",
+                    "command": "compile-hero.compileSelected",
+                    "group": "navigation"
+                },
+                {
                     "when": "resourceLangId == html",
                     "command": "compile-hero.openInBrowser",
                     "group": "open-in-browser"
                 },
                 {
-                    "command": "compile-hero.compileFile"
+                    "command": "compile-hero.compileFile",
+                    "group": "navigation"
                 }
             ]
         }

@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 
 import { StatusBarUi } from './status';
-import { command, transformPort, complieDir, complieFile, readFileName } from './util';
+import { command, transformPort, complieDir, complieFile, readFileName, getSelectedText } from './util';
 const open = require("open");
 const { formatters, formatActiveDocument } = require("./beautify");
 
@@ -44,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
   let compileFile = vscode.commands.registerCommand(
     "compile-hero.compileFile",
     (path) => {
-      let uri = path.fsPath;
+      const uri = path.fsPath;
       try {
         if (fs.readdirSync(uri).length > 0) {
           complieDir(uri);
@@ -54,6 +54,15 @@ export function activate(context: vscode.ExtensionContext) {
       } catch (error) {
         complieFile(uri);
       }
+    }
+  );
+
+  let compileSelected = vscode.commands.registerCommand(
+    "compile-hero.compileSelected",
+    (path) => {
+      const uri = path.fsPath;
+      const selectedText = getSelectedText();
+      readFileName({ fileName: uri, selectedText });
     }
   );
 
@@ -84,6 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(openInBrowser);
   context.subscriptions.push(closePort);
   context.subscriptions.push(compileFile);
+  context.subscriptions.push(compileSelected);
   context.subscriptions.push(compileHeroOn);
   context.subscriptions.push(compileHeroOff);
   context.subscriptions.push(beautify);

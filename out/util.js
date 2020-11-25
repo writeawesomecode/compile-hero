@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readFileName = exports.getWorkspaceRoot = exports.complieDir = exports.complieFile = exports.empty = exports.transformPort = exports.command = exports.fileType = exports.readFileContext = exports.errorMessage = exports.successMessage = void 0;
+exports.readFileName = exports.getWorkspaceRoot = exports.getSelectedText = exports.complieDir = exports.complieFile = exports.empty = exports.transformPort = exports.command = exports.fileType = exports.readFileContext = exports.errorMessage = exports.successMessage = void 0;
 const vscode = require("vscode");
 const child_process_1 = require("child_process");
 const fs = require("fs");
@@ -80,6 +80,23 @@ exports.complieDir = (uri) => {
         }
     });
 };
+// 获取当前选中的文本
+exports.getSelectedText = () => {
+    var _a, _b, _c, _d;
+    const documentText = (_a = vscode.window.activeTextEditor) === null || _a === void 0 ? void 0 : _a.document.getText();
+    if (!documentText) {
+        return "";
+    }
+    const activeSelection = (_b = vscode.window.activeTextEditor) === null || _b === void 0 ? void 0 : _b.selection;
+    if (activeSelection === null || activeSelection === void 0 ? void 0 : activeSelection.isEmpty) {
+        return "";
+    }
+    const selectStartOffset = (_c = vscode.window.activeTextEditor) === null || _c === void 0 ? void 0 : _c.document.offsetAt(activeSelection === null || activeSelection === void 0 ? void 0 : activeSelection.start);
+    const selectEndOffset = (_d = vscode.window.activeTextEditor) === null || _d === void 0 ? void 0 : _d.document.offsetAt(activeSelection === null || activeSelection === void 0 ? void 0 : activeSelection.end);
+    let selectedText = documentText.slice(selectStartOffset, selectEndOffset).trim();
+    selectedText = selectedText.replace(/\s\s+/g, " ");
+    return selectedText;
+};
 // 获取工作区位置
 exports.getWorkspaceRoot = (doc) => {
     if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0)
@@ -91,7 +108,7 @@ exports.getWorkspaceRoot = (doc) => {
         return;
     return folder.uri.fsPath;
 };
-exports.readFileName = ({ fileName }) => __awaiter(void 0, void 0, void 0, function* () {
+exports.readFileName = ({ fileName, selectedText }) => __awaiter(void 0, void 0, void 0, function* () {
     let workspaceRootPath = vscode.workspace.rootPath;
     let fileSuffix = exports.fileType(fileName);
     let config = vscode.workspace.getConfiguration("compile-hero");
@@ -138,25 +155,25 @@ exports.readFileName = ({ fileName }) => __awaiter(void 0, void 0, void 0, funct
     switch (fileSuffix) {
         case ".scss":
         case ".sass":
-            sass_1.sassLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            sass_1.sassLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".js":
-            javascript_1.javascriptLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            javascript_1.javascriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".less":
-            less_1.lessLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            less_1.lessLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".ts":
-            typescript_1.typescriptLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            typescript_1.typescriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".tsx":
-            typescriptx_1.typescriptxLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            typescriptx_1.typescriptxLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".jade":
-            jade_1.jadeLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            jade_1.jadeLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         case ".pug":
-            pug_1.pugLoader({ fileName, outputPath, notificationStatus, compileOptions });
+            pug_1.pugLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
             break;
         default:
             console.log("Not Found!");

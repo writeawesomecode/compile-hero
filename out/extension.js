@@ -45,7 +45,7 @@ function activate(context) {
         }
     }));
     let compileFile = vscode.commands.registerCommand("compile-hero.compileFile", (path) => {
-        let uri = path.fsPath;
+        const uri = path.fsPath;
         try {
             if (fs.readdirSync(uri).length > 0) {
                 util_1.complieDir(uri);
@@ -57,6 +57,11 @@ function activate(context) {
         catch (error) {
             util_1.complieFile(uri);
         }
+    });
+    let compileSelected = vscode.commands.registerCommand("compile-hero.compileSelected", (path) => {
+        const uri = path.fsPath;
+        const selectedText = util_1.getSelectedText();
+        util_1.readFileName({ fileName: uri, selectedText });
     });
     let compileHeroOn = vscode.commands.registerCommand("compile-hero.compileHeroOn", () => {
         let config = vscode.workspace.getConfiguration("compile-hero");
@@ -76,6 +81,7 @@ function activate(context) {
     context.subscriptions.push(openInBrowser);
     context.subscriptions.push(closePort);
     context.subscriptions.push(compileFile);
+    context.subscriptions.push(compileSelected);
     context.subscriptions.push(compileHeroOn);
     context.subscriptions.push(compileHeroOff);
     context.subscriptions.push(beautify);
