@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,11 +14,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readFileName = exports.getWorkspaceRoot = exports.getSelectedText = exports.complieDir = exports.complieFile = exports.empty = exports.transformPort = exports.command = exports.fileType = exports.readFileContext = exports.errorMessage = exports.successMessage = void 0;
+exports.readFileName = exports.getWorkspaceRoot = exports.getSelectedText = exports.complieDir = exports.complieFile = exports.empty = exports.transformPort = exports.command = exports.fileType = exports.readFileContext = exports.openBrowser = exports.open = exports.defaultBrowser = exports.standardizedBrowserName = exports.wsl = exports.docker = exports.errorMessage = exports.successMessage = void 0;
 const vscode = require("vscode");
 const child_process_1 = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
+const open_1 = require("./open");
+const browser_1 = require("./browser");
 const through = require("through2");
 const minimatch = require('minimatch');
 const sass_1 = require("./compile/sass");
@@ -25,6 +33,69 @@ const jade_1 = require("./compile/jade");
 const pug_1 = require("./compile/pug");
 exports.successMessage = "✔ Compilation Successed!";
 exports.errorMessage = "❌ Compilation Failed!";
+let isDocker;
+exports.docker = () => {
+    const hasDockerEnv = () => {
+        try {
+            fs.statSync('/.dockerenv');
+            return true;
+        }
+        catch (_) {
+            return false;
+        }
+    };
+    const hasDockerCGroup = () => {
+        try {
+            return fs.readFileSync('/proc/self/cgroup', 'utf8').includes('docker');
+        }
+        catch (_) {
+            return false;
+        }
+    };
+    if (isDocker === undefined) {
+        isDocker = hasDockerEnv() || hasDockerCGroup();
+    }
+    return isDocker;
+};
+const wsll = () => {
+    if (process.platform !== 'linux') {
+        return false;
+    }
+    if (os.release().toLowerCase().includes('microsoft')) {
+        if (exports.docker()) {
+            return false;
+        }
+        return true;
+    }
+    try {
+        return fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft') ?
+            !exports.docker() : false;
+    }
+    catch (_) {
+        return false;
+    }
+};
+exports.wsl = process.env.__IS_WSL_TEST__ ? wsll : wsll();
+exports.standardizedBrowserName = (name = '') => {
+    let _name = name.toLowerCase();
+    const browser = browser_1.browserConfig.browsers.find(item => {
+        return item.acceptName.indexOf(_name) !== -1;
+    });
+    return browser ? browser.standardName : '';
+};
+exports.defaultBrowser = () => {
+    const config = vscode.workspace.getConfiguration(browser_1.browserConfig.app);
+    return config ? config.default : '';
+};
+exports.open = (path, browser) => {
+    open_1.default(path, { app: browser }).catch((err) => {
+        vscode.window.showErrorMessage(`Open browser failed!! Please check if you have installed the browser ${browser} correctly!`);
+    });
+};
+exports.openBrowser = (path) => {
+    const browser = exports.standardizedBrowserName(exports.defaultBrowser());
+    exports.open(path, browser);
+};
 exports.readFileContext = (path) => {
     return fs.readFileSync(path).toString();
 };

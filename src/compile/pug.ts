@@ -1,3 +1,9 @@
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
+
 import { successMessage, errorMessage, empty, loader } from '../util';
 import * as vscode from "vscode";
 const pug = require("pug");

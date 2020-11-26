@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pugLoader = void 0;
 const util_1 = require("../util");

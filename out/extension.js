@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -14,24 +19,12 @@ const vscode = require("vscode");
 const fs = require("fs");
 const status_1 = require("./status");
 const util_1 = require("./util");
-const open = require("open");
 const { formatters, formatActiveDocument } = require("./beautify");
 function activate(context) {
     console.log('Congratulations, compile hero is now active!');
     let openInBrowser = vscode.commands.registerCommand("compile-hero.openInBrowser", (path) => {
         let uri = path.fsPath;
-        let platform = process.platform;
-        open(uri, {
-            app: [
-                platform === "win32"
-                    ? "chrome"
-                    : platform === "darwin"
-                        ? "google chrome"
-                        : "google-chrome",
-            ],
-        }).catch((err) => {
-            open(uri);
-        });
+        util_1.openBrowser(uri);
     });
     let closePort = vscode.commands.registerCommand("compile-hero.closePort", () => __awaiter(this, void 0, void 0, function* () {
         let inputPort = yield vscode.window.showInputBox({

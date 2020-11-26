@@ -458,8 +458,6 @@ const packageJson = {
     "dependencies": {
         "@babel/core": "^7.7.0",
         "@babel/preset-env": "^7.7.1",
-        "@types/mocha": "^2.2.42",
-        "@types/node": "^10.12.21",
         "editorconfig": "^0.15.3",
         "gulp": "^4.0.2",
         "gulp-babel": "^8.0.0",
@@ -469,7 +467,6 @@ const packageJson = {
         "gulp-uglify": "^3.0.2",
         "js-beautify": "^1.13.0",
         "minimatch": "^3.0.4",
-        "open": "^6.4.0",
         "pug": "^2.0.4",
         "sass": "^1.26.10",
         "less": "^3.12.2",
@@ -477,7 +474,9 @@ const packageJson = {
         "typescript": "^3.3.1"
     },
     "devDependencies": {
-        "vscode": "^1.1.28"
+        "vscode": "^1.1.28",
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^10.12.21",
     }
 }
 
@@ -495,7 +494,7 @@ switch (process.argv[2]) {
         packageJson.name = "qf";
         packageJson.displayName = "Formatter Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug.";
         packageJson.description = "🧣Beautify sass, less, scss, typescript, javascript, jade and pug.";
-        packageJson.version = "6.8.96";
+        packageJson.version = "6.8.97";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
@@ -514,7 +513,7 @@ switch (process.argv[2]) {
             "default": true,
             "description": "Disable compile files on did save code."
         };
-        packageJson.version = "2.3.28";
+        packageJson.version = "2.3.29";
         packageJson.preview = true;
         packageJson.icon = "logos/hero2.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));

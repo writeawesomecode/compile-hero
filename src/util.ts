@@ -1,7 +1,16 @@
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
+
 import * as vscode from "vscode";
 import { exec } from "child_process";
 import * as fs from "fs";
 import * as path from "path";
+import * as os from "os";
+import opn from './open';
+import { browserConfig } from './browser';
 
 const through = require("through2");
 const minimatch = require('minimatch');
@@ -52,6 +61,74 @@ export interface loader {
     compileOptions: CompileOptions;
     selectedText?: string;
 }
+
+let isDocker: boolean;
+export const docker = () => {
+    const hasDockerEnv = () => {
+        try {
+            fs.statSync('/.dockerenv');
+            return true;
+        } catch (_) {
+            return false;
+        }
+    }
+    const hasDockerCGroup = () => {
+        try {
+            return fs.readFileSync('/proc/self/cgroup', 'utf8').includes('docker');
+        } catch (_) {
+            return false;
+        }
+    }
+    if (isDocker === undefined) {
+        isDocker = hasDockerEnv() || hasDockerCGroup();
+    }
+    return isDocker;
+};
+
+const wsll = () => {
+    if (process.platform !== 'linux') {
+        return false;
+    }
+    if (os.release().toLowerCase().includes('microsoft')) {
+        if (docker()) {
+            return false;
+        }
+        return true;
+    }
+    try {
+        return fs.readFileSync('/proc/version', 'utf8').toLowerCase().includes('microsoft') ?
+            !docker() : false;
+    } catch (_) {
+        return false;
+    }
+};
+
+export const wsl = process.env.__IS_WSL_TEST__ ? wsll : wsll();
+
+export const standardizedBrowserName = (name: string = ''): string => {
+    let _name = name.toLowerCase();
+    const browser = browserConfig.browsers.find(item => {
+        return item.acceptName.indexOf(_name) !== -1;
+    });
+    return browser ? browser.standardName : '';
+};
+
+export const defaultBrowser = (): string => {
+    const config = vscode.workspace.getConfiguration(browserConfig.app);
+    return config ? config.default : '';
+};
+
+export const open = (path: string, browser: string | string[]) => {
+    opn(path, { app: browser }).catch((err: any) => {
+        vscode.window.showErrorMessage(`Open browser failed!! Please check if you have installed the browser ${browser} correctly!`);
+    });
+};
+
+export const openBrowser = (path: any): void => {
+    const browser = standardizedBrowserName(defaultBrowser());
+    open(path, browser);
+};
+
 
 export type FileSuffix =
     | ".js"

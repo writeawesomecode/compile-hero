@@ -1,9 +1,14 @@
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
+
 import * as vscode from "vscode";
 import * as fs from "fs";
 
 import { StatusBarUi } from './status';
-import { command, transformPort, complieDir, complieFile, readFileName, getSelectedText } from './util';
-const open = require("open");
+import { command, transformPort, complieDir, complieFile, readFileName, getSelectedText, openBrowser } from './util';
 const { formatters, formatActiveDocument } = require("./beautify");
 
 export function activate(context: vscode.ExtensionContext) {
@@ -12,18 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
     "compile-hero.openInBrowser",
     (path) => {
       let uri = path.fsPath;
-      let platform = process.platform;
-      open(uri, {
-        app: [
-          platform === "win32"
-            ? "chrome"
-            : platform === "darwin"
-              ? "google chrome"
-              : "google-chrome",
-        ],
-      }).catch((err: any) => {
-        open(uri);
-      });
+      openBrowser(uri);
     }
   );
   let closePort = vscode.commands.registerCommand(

@@ -1,3 +1,9 @@
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
+
 import { successMessage, errorMessage, loader } from '../util';
 import * as path from "path";
 import * as fs from "fs";

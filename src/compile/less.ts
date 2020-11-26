@@ -1,3 +1,9 @@
+/**
+ * Copyright © 1998 - 2020 Tencent. All Rights Reserved.
+ *
+ * @author enoyao
+ */
+
 import { successMessage, errorMessage, loader, readFileContext, empty } from '../util';
 import * as vscode from "vscode";
 const cssmin = require("gulp-minify-css");
