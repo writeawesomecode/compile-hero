@@ -13,10 +13,16 @@ Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, 
 
 ![Demo](./screenshots/9.png)
 
-> 2.按快捷键 `(ctrl+s)` 或者在文件列表右键菜单选择 `Compile File(s)` 命令启动编译，将会在该文件的同级目录 `dist` 下生成编译后的文件，希望能你远离 `webpack` 和 `gulp` 等编译工具繁琐的操作。
+> 2.按快捷键 `(ctrl+s)` 
+
+或者在文件列表右键菜单选择 `Compile Files` 命令启动编译，将会在该文件的同级目录 `dist` 下生成编译后的文件，希望能你远离 `webpack` 和 `gulp` 等编译工具繁琐的操作。
 
 ![Demo](./screenshots/3.gif)
 ![Demo](./screenshots/6.gif)
+
+你还可以选中部分代码使用 `Compile Selected` 菜单项或者快捷键 `(ctrl+shift+s)`，进行代码块的局部编译。
+
+![Demo](./screenshots/10.gif?raw=true)
 
 > 3.按快捷键 `(alt+shift+f)` 或者在文件列表右键菜单选择 `Format Document` 将会帮你自动格式化文件。
 

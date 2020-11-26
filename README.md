@@ -14,10 +14,16 @@ Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visu
 
 ![Demo](./screenshots/9.png?raw=true)
 
-> 2.Compile on save `(ctrl+s)` or select `Compile File(s)` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
+> 2.Compile on save `(ctrl+s)` ↓
+
+Or select `Compile Files` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
 
 ![Demo](./screenshots/1.gif?raw=true)
 ![Demo](./screenshots/3.gif?raw=true)
+
+You can also select part of the code and use the `Compile Selected` menu item or shortcut key `(ctrl+shift+s)` to perform partial compilation of the code block.
+
+![Demo](./screenshots/10.gif?raw=true)
 
 > 3.Beautify on save `(alt+shift+f)` or select `Format Document` on right-click menu item for `javascript, json, css, sass and html`.
 

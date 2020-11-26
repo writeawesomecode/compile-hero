@@ -37,6 +37,7 @@
 - 2020-09-30 Support prohibiting partial compilation and formatting of specific files by `compile-hero.ignore` option - [Feature: How to ignore compile child \_xxx.scss files](https://github.com/Wscats/compile-hero/issues/56).
 - 2020-11-24 Adjust the code directory structure and disassemble it into different loaders for maintenance.
 - 2020-11-25 Support selected code block compilation for `jade`, `pug`, `scss` and `less`.
+- 2020-11-26 Fix the problem that shortcut keys can’t be used normally, and improve the documentation.
 
 # Unreleased
 
