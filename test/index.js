@@ -16,6 +16,7 @@ function plus(a, b) {
     return a + b
 }
 plus(1, 2);
+
 // debug(plus)
 
 function sum(a, b) {
@@ -24,3 +25,4 @@ function sum(a, b) {
 }
 // debug(sum); // Pass the function object, not a string.
 sum();
+console.trace('');
