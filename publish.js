@@ -492,7 +492,7 @@ const deleteVsix = (uri) => {
 switch (process.argv[2]) {
     case 'c':
         packageJson.name = "qf";
-        packageJson.displayName = "Formatter Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug.";
+        packageJson.displayName = "Formatter Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug";
         packageJson.description = "🧣Beautify sass, less, scss, typescript, javascript, jade and pug.";
         packageJson.version = "6.8.97";
         packageJson.preview = true;

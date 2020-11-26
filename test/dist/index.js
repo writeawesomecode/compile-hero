@@ -1,2 +1,1 @@
-var a = 1;
-window.console.log(1);
+React.createElement("p", null, "123");
