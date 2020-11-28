@@ -25,7 +25,7 @@ Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, 
 
 你还可以选中部分代码使用 `Compile Selected` 菜单项或者快捷键 `(ctrl+shift+s)`，进行代码块的局部编译。
 
-![Demo](./screenshots/10.gif?raw=true)
+![Demo](./screenshots/10.gif)
 
 > 3.按快捷键 `(alt+shift+f)` 或者在文件列表右键菜单选择 `Format Document` 将会帮你自动格式化文件。
 

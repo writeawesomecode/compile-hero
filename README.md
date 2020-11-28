@@ -15,24 +15,29 @@ Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visu
 
 > 1.Please turn on the `Compile Hero: On` switch when using ↓
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/9.png?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/9.png?raw=true) -->
+![9](https://user-images.githubusercontent.com/17243165/100497845-f3341980-3198-11eb-83bc-c551e17b0b84.png)
+
 
 > 2.Compile on save `(ctrl+s)` ↓
 
 Or select `Compile Files` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/1.gif?raw=true)
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/3.gif?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/1.gif?raw=true) -->
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/3.gif?raw=true) -->
+![1](https://user-images.githubusercontent.com/17243165/100497832-e1eb0d00-3198-11eb-967e-78d6736e5b6e.gif)
+![3](https://user-images.githubusercontent.com/17243165/100497822-d7307800-3198-11eb-9a06-7b96c0862767.gif)
 
 You can also select part of the code and use the `Compile Selected` menu item or shortcut key `(ctrl+shift+s)` to perform partial compilation of the code block.
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/10.gif?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/10.gif?raw=true) -->
+![10](https://user-images.githubusercontent.com/17243165/100497811-c253e480-3198-11eb-894d-e0b28d84905a.gif)
+
 
 > 3.Beautify on save `(alt+shift+f)` or select `Format Document` on right-click menu item for `javascript, json, css, sass and html`.
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/8.gif?raw=true)
-
-
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/8.gif?raw=true) -->
+![8](https://user-images.githubusercontent.com/17243165/100497793-ae0fe780-3198-11eb-8b69-9c621a0cc9c6.gif)
 
 - Compile `less, sass, scss, typescript, jade, pug and jsx` on save.
 - Support autoprefixer for `less, scss, scss`.
@@ -55,7 +60,9 @@ Easy to use. When you writing a file, press save `ctrl+s` to generate the compil
 
 Click to open the extension management interface `Configure Extension Settings`.
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/5.gif?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/5.gif?raw=true) -->
+
+![5](https://user-images.githubusercontent.com/17243165/100497777-92a4dc80-3198-11eb-86cf-e2dda4b4967f.gif)
 
 - You can change the output path of the project compilation directory.
 - Toggle the compile switch of different language.
@@ -65,7 +72,9 @@ Click to open the extension management interface `Configure Extension Settings`.
 | -------------------------------------------------------------------------- | ------------- |
 | disable-compile-files-on-did-save-code                                     | false         |
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/7.gif?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/7.gif?raw=true) -->
+
+![7](https://user-images.githubusercontent.com/17243165/100497765-81f46680-3198-11eb-9597-bbcdc1e7726e.gif)
 
 | Switch to control the notification | Default Value |
 | ---------------------------------- | ------------- |
@@ -135,19 +144,22 @@ Here Example `tsconfig.json` file:
 
 Right click the `html` file in the directory menu, and the `open in browser` option will appear. You can preview the page in the browser.
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/2.gif?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/2.gif?raw=true) -->
+![2](https://user-images.githubusercontent.com/17243165/100497736-596c6c80-3198-11eb-8bac-3006d381b7a2.gif)
 
 # Compile File Menu Item
 
 Sometimes you may not need to automatically compile the file every time you save the file, at this time you can disable the automatic compilation. And use the `Compile File(s)` menu item to replace.
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/6.gif?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/6.gif?raw=true) -->
+![6](https://user-images.githubusercontent.com/17243165/100497686-1611fe00-3198-11eb-9b9c-9142901ac2dc.gif)
 
 # Close Port Command(MAC)
 
 At some point, you may be using ports for some services. You can use the `Close Port` command to close, but now only supported on mac.
 
-![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/4.gif?raw=true)
+<!-- ![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/4.gif?raw=true) -->
+![4](https://user-images.githubusercontent.com/17243165/100497713-422d7f00-3198-11eb-8e63-53573a71e62b.gif)
 
 # Thanks
 
