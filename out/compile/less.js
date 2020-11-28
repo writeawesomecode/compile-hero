@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.lessLoader = void 0;
 const util_1 = require("../util");
 const vscode = require("vscode");
+const path = require("path");
 const cssmin = require("gulp-minify-css");
 const { src, dest } = require("gulp");
 const less = require("less");
@@ -15,7 +16,10 @@ const rename = require("gulp-rename");
 exports.lessLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }) => {
     try {
         let css = "";
-        less.render(selectedText || util_1.readFileContext(fileName)).then((output) => {
+        less.render(selectedText || util_1.readFileContext(fileName), {
+            // 作用域，支持 @import
+            paths: [path.join(fileName, '../')]
+        }).then((output) => {
             css = output.css;
             src(fileName)
                 .pipe(util_1.empty(css))

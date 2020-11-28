@@ -38,6 +38,7 @@
 - 2020-11-24 Adjust the code directory structure and disassemble it into different loaders for maintenance.
 - 2020-11-25 Support selected code block compilation for `jade`, `pug`, `scss` and `less`.
 - 2020-11-26 Fix the problem that shortcut keys can’t be used normally, and improve the documentation.
+- 2020-11-28 Fix when compiling `less` files, `@import` syntax failed to find files - [Bug: @import syntax failed](https://github.com/Wscats/compile-hero/issues/80).
 
 # Unreleased
 

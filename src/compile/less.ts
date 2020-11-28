@@ -6,6 +6,7 @@
 
 import { successMessage, errorMessage, loader, readFileContext, empty } from '../util';
 import * as vscode from "vscode";
+import * as path from "path";
 const cssmin = require("gulp-minify-css");
 const { src, dest } = require("gulp");
 const less = require("less");
@@ -14,7 +15,10 @@ const rename = require("gulp-rename");
 export const lessLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }: loader) => {
     try {
         let css = "";
-        less.render(selectedText || readFileContext(fileName)).then((output: any) => {
+        less.render(selectedText || readFileContext(fileName), {
+            // 作用域，支持 @import
+            paths: [path.join(fileName, '../')]
+        }).then((output: any) => {
             css = output.css;
 
             src(fileName)
