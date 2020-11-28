@@ -15,22 +15,22 @@ Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visu
 
 > 1.Please turn on the `Compile Hero: On` switch when using ↓
 
-![Demo](./screenshots/9.png?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/9.png?raw=true)
 
 > 2.Compile on save `(ctrl+s)` ↓
 
 Or select `Compile Files` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
 
-![Demo](./screenshots/1.gif?raw=true)
-![Demo](./screenshots/3.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/1.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/3.gif?raw=true)
 
 You can also select part of the code and use the `Compile Selected` menu item or shortcut key `(ctrl+shift+s)` to perform partial compilation of the code block.
 
-![Demo](./screenshots/10.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/10.gif?raw=true)
 
 > 3.Beautify on save `(alt+shift+f)` or select `Format Document` on right-click menu item for `javascript, json, css, sass and html`.
 
-![Demo](./screenshots/8.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/8.gif?raw=true)
 
 
 
@@ -55,7 +55,7 @@ Easy to use. When you writing a file, press save `ctrl+s` to generate the compil
 
 Click to open the extension management interface `Configure Extension Settings`.
 
-![Demo](./screenshots/5.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/5.gif?raw=true)
 
 - You can change the output path of the project compilation directory.
 - Toggle the compile switch of different language.
@@ -65,7 +65,7 @@ Click to open the extension management interface `Configure Extension Settings`.
 | -------------------------------------------------------------------------- | ------------- |
 | disable-compile-files-on-did-save-code                                     | false         |
 
-![Demo](./screenshots/7.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/7.gif?raw=true)
 
 | Switch to control the notification | Default Value |
 | ---------------------------------- | ------------- |
@@ -135,19 +135,19 @@ Here Example `tsconfig.json` file:
 
 Right click the `html` file in the directory menu, and the `open in browser` option will appear. You can preview the page in the browser.
 
-![Demo](./screenshots/2.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/2.gif?raw=true)
 
 # Compile File Menu Item
 
 Sometimes you may not need to automatically compile the file every time you save the file, at this time you can disable the automatic compilation. And use the `Compile File(s)` menu item to replace.
 
-![Demo](./screenshots/6.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/6.gif?raw=true)
 
 # Close Port Command(MAC)
 
 At some point, you may be using ports for some services. You can use the `Close Port` command to close, but now only supported on mac.
 
-![Demo](./screenshots/4.gif?raw=true)
+![Demo](https://gitee.com/wscats/compile-hero/raw/master/screenshots/4.gif?raw=true)
 
 # Thanks
 
