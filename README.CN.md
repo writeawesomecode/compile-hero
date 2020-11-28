@@ -1,7 +1,10 @@
-<a href="https://marketplace.visualstudio.com/items?itemName=Wscats.eno"><img src="https://img.shields.io/badge/Download-2k+-orange" alt="Download" /></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=Wscats.eno"><img src="https://img.shields.io/badge/Macketplace-v2.00-brightgreen" alt="Macketplace" /></a>
+<!-- <a href="https://marketplace.visualstudio.com/items?itemName=Wscats.eno"><img src="https://img.shields.io/badge/Download-2k+-orange" alt="Download" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=Wscats.eno"><img src="https://img.shields.io/badge/Macketplace-v2.00-brightgreen" alt="Macketplace" /></a> -->
 <a href="https://github.com/Wscats/compile-hero"><img src="https://img.shields.io/badge/Github Page-Wscats-yellow" alt="Github Page" /></a>
 <a href="https://github.com/Wscats"><img src="https://img.shields.io/badge/Author-Eno Yao-blueviolet" alt="Eno Yao" /></a>
+![badge version](https://vsmarketplacebadge.apphb.com/version-short/wscats.eno.svg?color=blue&style=flat-square)
+![badge install](https://vsmarketplacebadge.apphb.com/installs-short/wscats.eno.svg?color=brightgreen&style=flat-square)
+![badge rate](https://vsmarketplacebadge.apphb.com/rating-short/wscats.eno.svg?color=red&style=flat-square)
 
 [English](./README.md) | [中文](./README.CN.md)
 
