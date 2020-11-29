@@ -505,7 +505,7 @@ switch (process.argv[2]) {
         packageJson.name = "qf";
         packageJson.displayName = "Formatter Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug";
         packageJson.description = "🧣Beautify sass, less, scss, typescript, javascript, jade and pug.";
-        packageJson.version = "6.8.104";
+        packageJson.version = "6.8.106";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
@@ -513,18 +513,44 @@ switch (process.argv[2]) {
             "default": true,
             "description": "Disable compile files on did save code."
         };
+        packageJson.contributes.commands = [
+            {
+                "command": "compile-hero.openInBrowser",
+                "title": "Open In Browser(Pro)"
+            },
+            {
+                "command": "compile-hero.closePort",
+                "title": "Close Port(Pro)"
+            },
+            {
+                "command": "compile-hero.compileSelected",
+                "title": "Compile Selected(Pro)"
+            },
+            {
+                "command": "compile-hero.compileFile",
+                "title": "Compile Files(Pro)"
+            },
+            {
+                "command": "compile-hero.beautify",
+                "title": "Beautify(Pro)"
+            },
+            {
+                "command": "compile-hero.beautifyFile",
+                "title": "Beautify File(Pro)"
+            }
+        ];
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
         break;
     case 'b':
         packageJson.name = "eno";
-        packageJson.displayName = "Sass/Less/Stylus/Scss/Typescript/Javascript/Jade/Pug Compile Hero Pro";
+        packageJson.displayName = "Sass/Less/Stylus/Typescript/Javascript/Jade/Pug Compile Hero Pro";
         packageJson.description = "🚀Easy to compile ts, tsx, scss, less, stylus, jade, pug and es6+ on save without using a build task.";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
             "type": "boolean",
             "default": true,
             "description": "Disable compile files on did save code."
         };
-        packageJson.version = "2.3.36";
+        packageJson.version = "2.3.37";
         packageJson.preview = true;
         packageJson.icon = "logos/hero2.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));
