@@ -20,8 +20,8 @@ import { javascriptLoader } from './compile/javascript';
 import { lessLoader } from './compile/less';
 import { typescriptLoader } from './compile/typescript';
 import { typescriptxLoader } from './compile/typescriptx';
-import { jadeLoader } from './compile/jade';
 import { pugLoader } from './compile/pug';
+import { stylusLoader } from './compile/stylus';
 
 export const successMessage = "✔ Compilation Successed!";
 export const errorMessage = "❌ Compilation Failed!";
@@ -35,6 +35,7 @@ export interface OutputDirectoryPath {
     ".ts": string;
     ".tsx": string;
     ".pug": string;
+    ".styl": string;
 }
 
 export interface CompileStatus {
@@ -46,6 +47,7 @@ export interface CompileStatus {
     ".ts": boolean | undefined;
     ".tsx": boolean | undefined;
     ".pug": boolean | undefined;
+    ".styl": boolean | undefined;
 }
 
 export interface CompileOptions {
@@ -54,7 +56,7 @@ export interface CompileOptions {
     generateMinifiedJs: boolean | undefined;
 }
 
-export interface loader {
+export interface loaderOption {
     fileName: string
     outputPath: string;
     notificationStatus: boolean | undefined;
@@ -138,7 +140,8 @@ export type FileSuffix =
     | ".jade"
     | ".ts"
     | ".tsx"
-    | ".pug";
+    | ".pug"
+    | ".styl";
 
 export const readFileContext = (path: string): string => {
     return fs.readFileSync(path).toString();
@@ -246,6 +249,7 @@ export const readFileName = async ({ fileName, selectedText }: { fileName: strin
         ".ts": config.get<string>("typescript-output-directory") || "",
         ".tsx": config.get<string>("typescriptx-output-directory") || "",
         ".pug": config.get<string>("pug-output-directory") || "",
+        ".styl": config.get<string>("stylus-output-directory") || "",
     };
     let compileStatus: CompileStatus = {
         ".js": config.get<boolean>("javascript-output-toggle"),
@@ -256,6 +260,7 @@ export const readFileName = async ({ fileName, selectedText }: { fileName: strin
         ".ts": config.get<boolean>("typescript-output-toggle"),
         ".tsx": config.get<boolean>("typescriptx-output-toggle"),
         ".pug": config.get<boolean>("pug-output-toggle"),
+        ".styl": config.get<boolean>("stylus-output-toggle"),
     };
     let ignore = config.get<string[] | string>("ignore") || [];
 
@@ -275,31 +280,30 @@ export const readFileName = async ({ fileName, selectedText }: { fileName: strin
 
     if (!compileStatus[fileSuffix]) return;
     let outputPath = path.resolve(fileName, "../", outputDirectoryPath[fileSuffix]);
+    let loaderOption: loaderOption = { fileName, outputPath, notificationStatus, compileOptions, selectedText };
     switch (fileSuffix) {
         case ".scss":
         case ".sass":
-            sassLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            sassLoader(loaderOption);
             break;
         case ".js":
-            javascriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            javascriptLoader(loaderOption);
             break;
         case ".less":
-            lessLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            lessLoader(loaderOption);
             break;
         case ".ts":
-            typescriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            typescriptLoader(loaderOption);
             break;
         case ".tsx":
-            typescriptxLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            typescriptxLoader(loaderOption);
             break;
         case ".jade":
-            jadeLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
-            break;
         case ".pug":
-            pugLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            pugLoader(loaderOption);
             break;
-        default:
-            console.log("Not Found!");
+        case ".styl":
+            stylusLoader(loaderOption);
             break;
     }
 };

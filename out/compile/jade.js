@@ -8,13 +8,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.jadeLoader = void 0;
 const util_1 = require("../util");
 const vscode = require("vscode");
+const path = require("path");
 const jade = require("jade");
 const { src, dest } = require("gulp");
 const rename = require("gulp-rename");
 exports.jadeLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }) => {
     let html = "";
+    let options = { pretty: true, filename: path.join(fileName) };
     try {
-        html = selectedText ? jade.compile(selectedText, { pretty: true })() : jade.renderFile(fileName, { pretty: true });
+        html = selectedText ? jade.compile(selectedText, options)() : jade.renderFile(fileName, options);
     }
     catch (error) {
         notificationStatus && vscode.window.showErrorMessage(error.message);

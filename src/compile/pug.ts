@@ -4,15 +4,17 @@
  * @author enoyao
  */
 
-import { successMessage, errorMessage, empty, loader } from '../util';
+import { successMessage, errorMessage, empty, loaderOption } from '../util';
 import * as vscode from "vscode";
+import * as path from "path";
 const pug = require("pug");
 const { src, dest } = require("gulp");
 const rename = require("gulp-rename");
 
-export const pugLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }: loader) => {
+export const pugLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }: loaderOption) => {
     try {
-        const html = selectedText ? pug.compile(selectedText, { pretty: true })() : pug.renderFile(fileName, { pretty: true });
+        const options = { pretty: true, filename: path.join(fileName) };
+        const html = selectedText ? pug.compile(selectedText, options)() : pug.renderFile(fileName, options);
         src(fileName)
             .pipe(empty(html))
             .pipe(rename({ extname: ".html" }))
@@ -23,7 +25,8 @@ export const pugLoader = ({ fileName, outputPath, notificationStatus, compileOpt
     }
 
     if (compileOptions.generateMinifiedHtml) {
-        const html = selectedText ? pug.compile(selectedText)() : pug.renderFile(fileName);
+        const options = { filename: path.join(fileName) };
+        const html = selectedText ? pug.compile(selectedText, options)() : pug.renderFile(fileName, options);
         src(fileName)
             .pipe(empty(html))
             .pipe(rename({ suffix: ".min", extname: ".html" }))

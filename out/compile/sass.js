@@ -7,6 +7,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sassLoader = void 0;
 const vscode = require("vscode");
+const path = require("path");
 const { src, dest } = require("gulp");
 const sass = require("sass");
 const cssmin = require("gulp-minify-css");
@@ -14,6 +15,11 @@ const rename = require("gulp-rename");
 const util_1 = require("../util");
 exports.sassLoader = ({ fileName, outputPath, notificationStatus, compileOptions, selectedText }) => {
     try {
+        selectedText = selectedText && sass.renderSync({
+            data: selectedText,
+            // 作用域，支持 @import
+            includePaths: [path.join(fileName, '../')]
+        }).css;
         const text = selectedText || sass.renderSync({ file: fileName }).css.toString();
         src(fileName)
             .pipe(util_1.empty(text))

@@ -29,8 +29,8 @@ const javascript_1 = require("./compile/javascript");
 const less_1 = require("./compile/less");
 const typescript_1 = require("./compile/typescript");
 const typescriptx_1 = require("./compile/typescriptx");
-const jade_1 = require("./compile/jade");
 const pug_1 = require("./compile/pug");
+const stylus_1 = require("./compile/stylus");
 exports.successMessage = "✔ Compilation Successed!";
 exports.errorMessage = "❌ Compilation Failed!";
 let isDocker;
@@ -192,6 +192,7 @@ exports.readFileName = ({ fileName, selectedText }) => __awaiter(void 0, void 0,
         ".ts": config.get("typescript-output-directory") || "",
         ".tsx": config.get("typescriptx-output-directory") || "",
         ".pug": config.get("pug-output-directory") || "",
+        ".styl": config.get("stylus-output-directory") || "",
     };
     let compileStatus = {
         ".js": config.get("javascript-output-toggle"),
@@ -202,6 +203,7 @@ exports.readFileName = ({ fileName, selectedText }) => __awaiter(void 0, void 0,
         ".ts": config.get("typescript-output-toggle"),
         ".tsx": config.get("typescriptx-output-toggle"),
         ".pug": config.get("pug-output-toggle"),
+        ".styl": config.get("stylus-output-toggle"),
     };
     let ignore = config.get("ignore") || [];
     if (workspaceRootPath && fileName.startsWith(workspaceRootPath)) {
@@ -223,31 +225,30 @@ exports.readFileName = ({ fileName, selectedText }) => __awaiter(void 0, void 0,
     if (!compileStatus[fileSuffix])
         return;
     let outputPath = path.resolve(fileName, "../", outputDirectoryPath[fileSuffix]);
+    let loaderOption = { fileName, outputPath, notificationStatus, compileOptions, selectedText };
     switch (fileSuffix) {
         case ".scss":
         case ".sass":
-            sass_1.sassLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            sass_1.sassLoader(loaderOption);
             break;
         case ".js":
-            javascript_1.javascriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            javascript_1.javascriptLoader(loaderOption);
             break;
         case ".less":
-            less_1.lessLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            less_1.lessLoader(loaderOption);
             break;
         case ".ts":
-            typescript_1.typescriptLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            typescript_1.typescriptLoader(loaderOption);
             break;
         case ".tsx":
-            typescriptx_1.typescriptxLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            typescriptx_1.typescriptxLoader(loaderOption);
             break;
         case ".jade":
-            jade_1.jadeLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
-            break;
         case ".pug":
-            pug_1.pugLoader({ fileName, outputPath, notificationStatus, compileOptions, selectedText });
+            pug_1.pugLoader(loaderOption);
             break;
-        default:
-            console.log("Not Found!");
+        case ".styl":
+            stylus_1.stylusLoader(loaderOption);
             break;
     }
 });

@@ -7,7 +7,7 @@
 
 # Features
 
-Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visual Studio Code.
+Easily work with `less, sass, scss, stylus, typescript, jade, pug and jsx` files in Visual Studio Code.
 
 > 1.Please turn on the `Compile Hero: On` switch when using ↓
 
@@ -16,7 +16,7 @@ Easily work with `less, sass, scss, typescript, jade, pug and jsx` files in Visu
 
 > 2.Compile on save `(ctrl+s)` ↓
 
-Or select `Compile Files` on right-click menu item for `less, sass, scss, typescript, jade, pug and jsx` files without using a build task.
+Or select `Compile Files` on right-click menu item for `less, sass, scss, stylus, typescript, jade, pug and jsx` files without using a build task.
 
 ![1](https://user-images.githubusercontent.com/17243165/100497832-e1eb0d00-3198-11eb-967e-78d6736e5b6e.gif)
 ![3](https://user-images.githubusercontent.com/17243165/100497822-d7307800-3198-11eb-9a06-7b96c0862767.gif)
@@ -42,6 +42,7 @@ You can also select part of the code and use the `Compile Selected` menu item or
 | .jade          | .html         |
 | .scss(sass)    | .css          |
 | .less          | .css          |
+| .styl          | .css          |
 | .ts/.tsx       | .js(JSX)      |
 | .js(ES6)       | .js(ES5)      |
 
@@ -81,7 +82,8 @@ Click to open the extension management interface `Configure Extension Settings`.
 | typescript-output-directory  | ./dist        | typescript-output-toggle  | true          |
 | typescriptx-output-directory | ./dist        | typescriptx-output-toggle | true          |
 | pug-output-directory         | ./dist        | pug-output-toggle         | true          |
-| generate-minified-html       | false         |
+| stylus-output-directory      | ./dist        | stylus-output-toggle      | true          |
+| generate-minified-html       | false         | 
 | generate-minified-css        | false         |
 | generate-minified-javascript | false         |
 

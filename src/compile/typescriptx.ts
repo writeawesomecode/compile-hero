@@ -4,7 +4,7 @@
  * @author enoyao
  */
 
-import { successMessage, errorMessage, loader } from '../util';
+import { successMessage, errorMessage, loaderOption } from '../util';
 import * as path from "path";
 import * as fs from "fs";
 import * as vscode from "vscode";
@@ -12,7 +12,7 @@ const ts = require("gulp-typescript");
 const { src, dest } = require("gulp");
 const uglify = require("gulp-uglify");
 
-export const typescriptxLoader = ({ fileName, outputPath, notificationStatus, compileOptions }: loader) => {
+export const typescriptxLoader = ({ fileName, outputPath, notificationStatus, compileOptions }: loaderOption) => {
     const tsxConfigPath = path.join(fileName, '../tsconfig.json');
     const isExistsTsxconfigPath = fs.existsSync(tsxConfigPath);
 

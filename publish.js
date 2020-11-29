@@ -43,6 +43,7 @@ const packageJson = {
         "typescript",
         "ts",
         "less",
+        "stylus",
         "ES6",
         "ES5",
         "JS",
@@ -151,6 +152,11 @@ const packageJson = {
                     "default": "./dist",
                     "description": "Set the directory to output after compiling less."
                 },
+                "compile-hero.stylus-output-directory": {
+                    "type": "string",
+                    "default": "./dist",
+                    "description": "Set the directory to output after compiling stylus."
+                },
                 "compile-hero.jade-output-directory": {
                     "type": "string",
                     "default": "./dist",
@@ -190,6 +196,11 @@ const packageJson = {
                     "type": "boolean",
                     "default": true,
                     "description": "Switch to control the compilation of less."
+                },
+                "compile-hero.stylus-output-toggle": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Switch to control the compilation of stylus."
                 },
                 "compile-hero.jade-output-toggle": {
                     "type": "boolean",
@@ -386,7 +397,7 @@ const packageJson = {
         },
         "keybindings": [
             {
-                "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$|^stylus$/",
                 "command": "compile-hero.compileSelected",
                 "key": "cmd+shift+s ctrl+shift+s",
                 "mac": "cmd+shift+s",
@@ -405,7 +416,7 @@ const packageJson = {
                     "group": "navigation"
                 },
                 {
-                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$|^stylus$/",
                     "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 }
@@ -421,7 +432,7 @@ const packageJson = {
                     "group": "navigation"
                 },
                 {
-                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$|^stylus$/",
                     "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 }
@@ -437,7 +448,7 @@ const packageJson = {
                     "group": "navigation"
                 },
                 {
-                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$/",
+                    "when": "editorHasSelection && resourceLangId =~ /^less$|^scss$|^jade$|^pug$|^stylus$/",
                     "command": "compile-hero.compileSelected",
                     "group": "navigation"
                 }
@@ -470,8 +481,8 @@ const packageJson = {
         "pug": "^2.0.4",
         "sass": "^1.26.10",
         "less": "^3.12.2",
-        "jade": "^1.11.0",
-        "typescript": "^3.3.1"
+        "typescript": "^3.3.1",
+        "stylus": "^0.54.8"
     },
     "devDependencies": {
         "vscode": "^1.1.28",
@@ -494,7 +505,7 @@ switch (process.argv[2]) {
         packageJson.name = "qf";
         packageJson.displayName = "Formatter Hero - Beautify Sass/Less/Scss/Typescript/Javascript/Jade/Pug";
         packageJson.description = "🧣Beautify sass, less, scss, typescript, javascript, jade and pug.";
-        packageJson.version = "6.8.102";
+        packageJson.version = "6.8.104";
         packageJson.preview = true;
         packageJson.icon = "logos/hero4.png";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
@@ -506,14 +517,14 @@ switch (process.argv[2]) {
         break;
     case 'b':
         packageJson.name = "eno";
-        packageJson.displayName = "Sass/Less/Scss/Typescript/Javascript/Jade/Pug Compile Hero Pro";
-        packageJson.description = "🚀Easy to compile ts, tsx, scss, less, jade, pug and es6+ on save without using a build task.";
+        packageJson.displayName = "Sass/Less/Stylus/Scss/Typescript/Javascript/Jade/Pug Compile Hero Pro";
+        packageJson.description = "🚀Easy to compile ts, tsx, scss, less, stylus, jade, pug and es6+ on save without using a build task.";
         packageJson.contributes.configuration.properties["compile-hero.disable-compile-files-on-did-save-code"] = {
             "type": "boolean",
             "default": true,
             "description": "Disable compile files on did save code."
         };
-        packageJson.version = "2.3.34";
+        packageJson.version = "2.3.36";
         packageJson.preview = true;
         packageJson.icon = "logos/hero2.png";
         fs.writeFileSync('./package.json', JSON.stringify(packageJson));

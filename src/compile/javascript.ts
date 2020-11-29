@@ -10,9 +10,9 @@ const babel = require("gulp-babel");
 const babelEnv = require("@babel/preset-env");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
-import { successMessage, errorMessage, loader } from '../util';
+import { successMessage, errorMessage, loaderOption } from '../util';
 
-export const javascriptLoader = ({ fileName, outputPath, notificationStatus, compileOptions }: loader) => {
+export const javascriptLoader = ({ fileName, outputPath, notificationStatus, compileOptions }: loaderOption) => {
     if (/.dev.js|.prod.js$/g.test(fileName)) {
         vscode.window.setStatusBarMessage(
             `The prod or dev file has been processed and will not be compiled`

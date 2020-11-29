@@ -10,7 +10,7 @@
 
 # 特性
 
-Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, jade, pug and jsx`。
+Visual Studio Code 中自动编译以下文件：`less, sass, scss, stylus, typescript, jade, pug and jsx`。
 
 > 1.使用之前打开编辑器右下角底部栏开关 `Compile Hero: On` ↓
 
@@ -31,7 +31,7 @@ Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, 
 
 ![Demo](./screenshots/8.gif)
 
-- 按保存 `Ctrl+S` 会自动编译编译 `less, sass, scss, typescript, jade, pug and jsx` 等文件。
+- 按保存 `Ctrl+S` 会自动编译编译 `less, sass, scss, stylus, typescript, jade, pug and jsx` 等文件。
 - 支持 `less, scss, scss` 等文件代码高亮。
 - 支持在默认浏览器打开 `html` 文件。
 - 支持压缩 `javascript` 和 `css` 文件。
@@ -43,6 +43,7 @@ Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, 
 | .jade       | .html    |
 | .scss(sass) | .css     |
 | .less       | .css     |
+| .styl       | .css     |
 | .ts/.tsx    | .js(JSX) |
 | .js(ES6)    | .js(ES5) |
 
@@ -78,6 +79,7 @@ Visual Studio Code 中自动编译以下文件：`less, sass, scss, typescript, 
 | typescript-output-directory    | ./dist | typescript-output-toggle             | true   |
 | typescriptx-output-directory   | ./dist | typescriptx-output-toggle            | true   |
 | pug-output-directory           | ./dist | pug-output-toggle                    | true   |
+| stylus-output-directory        | ./dist | stylus-output-toggle                 | true   |
 | generate-minified-html         | false  |
 | generate-minified-css          | false  |
 | generate-minified-javascript   | false  |
